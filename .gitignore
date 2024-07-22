@@ -1,0 +1,14 @@
+﻿/api/RehApp.API/bin/
+/api/RehApp.API/obj/
+/api/RehApp.API/appsettings.Development.json
+
+/api/RehApp.Application/bin/
+/api/RehApp.Application/obj/
+
+/api/RehApp.Domain/bin/
+/api/RehApp.Domain/obj/
+
+/api/RehApp.Infrastructure/bin/
+/api/RehApp.Infrastructure/obj/
+
+/api/.idea
