@@ -31,8 +31,5 @@ public static class WebApplicationBuilderExtensions
 				} 
 			});
 		});
-
-		builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
-			.AddEntityFrameworkStores<ApplicationDbContext>();
 	}
 }

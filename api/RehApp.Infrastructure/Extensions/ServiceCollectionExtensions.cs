@@ -15,10 +15,7 @@ public static class ServiceCollectionExtensions
 		services.AddDbContext<ApplicationDbContext>(
 			o => o.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-		services.AddIdentityCore<ApplicationUser>(options =>
-			{
-				// Password settings
-			})
+		services.AddIdentityApiEndpoints<ApplicationUser>()
 			.AddRoles<IdentityRole>()
 			.AddEntityFrameworkStores<ApplicationDbContext>();
 
