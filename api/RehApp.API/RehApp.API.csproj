@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\RehApp.Application\RehApp.Application.csproj" />
     <ProjectReference Include="..\RehApp.Infrastructure\RehApp.Infrastructure.csproj" />
   </ItemGroup>

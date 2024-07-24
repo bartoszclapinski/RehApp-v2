@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RehApp.Application.User.Commands;
 using RehApp.Domain.Entities.Users;
 
 namespace RehApp.Application.User.DTOs;
@@ -7,7 +8,8 @@ public class ApplicationUserProfile : Profile
 {
 	public ApplicationUserProfile()
 	{
-		CreateMap<CreateUserDto, ApplicationUser>()
+
+		CreateMap<CreateUserCommand, ApplicationUser>()
 			.ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email))
 			.ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow))
 			.ForMember(dest => dest.IsActive, opt => opt.MapFrom(_ => true))
@@ -23,6 +25,6 @@ public class ApplicationUserProfile : Profile
 			.ForMember(dest => dest.TwoFactorEnabled, opt => opt.Ignore())
 			.ForMember(dest => dest.LockoutEnd, opt => opt.Ignore())
 			.ForMember(dest => dest.LockoutEnabled, opt => opt.Ignore())
-			.ForMember(dest => dest.AccessFailedCount, opt => opt.Ignore());	
+			.ForMember(dest => dest.AccessFailedCount, opt => opt.Ignore());
 	}
 }
