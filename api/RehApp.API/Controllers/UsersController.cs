@@ -11,7 +11,7 @@ public class UsersController(IMediator mediator) : ControllerBase
 	[HttpPost]
 	public async Task<IActionResult> CreateUser(CreateUserCommand command)
 	{
-		Guid userId = await mediator.Send(command);
+		var userId = await mediator.Send(command);
 		return Ok(userId);
 	}
 	

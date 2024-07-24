@@ -8,10 +8,10 @@ namespace RehApp.Application.User.Commands;
 public class CreateUserCommandHandle(
 	UserManager<ApplicationUser> userManager,
 	RoleManager<IdentityRole> roleManager,
-	IMapper mapper) : IRequestHandler<CreateUserCommand, Guid>
+	IMapper mapper) : IRequestHandler<CreateUserCommand, string>
 {
 
-	public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+	public async Task<string> Handle(CreateUserCommand request, CancellationToken cancellationToken)
 	{
 		//	Check if user exists
 		ApplicationUser? userExists = await userManager.FindByEmailAsync(request.Email);
@@ -27,6 +27,6 @@ public class CreateUserCommandHandle(
 		if (!result.Succeeded) throw new Exception("User creation failed");
 		
 		await userManager.AddToRoleAsync(user, role.Name!);
-		return new Guid(user.Id);
+		return user.Id;
 	}
 }

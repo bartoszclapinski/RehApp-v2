@@ -19,5 +19,11 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 			.When(x => x.UserRole is UserRoles.Nurse);
 		RuleFor(x => x.AdminLevel).NotEmpty()
 			.When(x => x.UserRole is UserRoles.OrganizationAdmin or UserRoles.Admin);
+		
+		// Address validation
+		RuleFor(x => x.Street).NotEmpty();
+		RuleFor(x => x.City).NotEmpty();
+		RuleFor(x => x.ZipCode).NotEmpty();
+		RuleFor(x => x.Country).NotEmpty();
 	}
 }

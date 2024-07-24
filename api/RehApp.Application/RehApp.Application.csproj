@@ -21,4 +21,8 @@
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="User\Validators\" />
+    </ItemGroup>
+
 </Project>
