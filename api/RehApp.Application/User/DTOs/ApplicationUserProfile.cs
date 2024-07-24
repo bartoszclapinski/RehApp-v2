@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using RehApp.Application.User.Commands;
+using RehApp.Domain.Entities;
 using RehApp.Domain.Entities.Users;
 
 namespace RehApp.Application.User.DTOs;
@@ -13,6 +14,13 @@ public class ApplicationUserProfile : Profile
 			.ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email))
 			.ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow))
 			.ForMember(dest => dest.IsActive, opt => opt.MapFrom(_ => true))
+			.ForMember(dest => dest.Address, opt => opt.MapFrom(src => new Address
+			{
+				Street = src.Street,
+				City = src.City,
+				ZipCode = src.ZipCode,
+				Country = src.Country
+			}))
 			.ForMember(dest => dest.LastLoginAt, opt => opt.Ignore())
 			.ForMember(dest => dest.Id, opt => opt.Ignore())
 			.ForMember(dest => dest.NormalizedEmail, opt => opt.Ignore())

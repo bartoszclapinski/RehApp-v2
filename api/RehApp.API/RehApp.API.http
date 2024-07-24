@@ -13,7 +13,11 @@ Content-Type: application/json
   "lastName": "Doe",
   "userRole": "Doctor",
   "specialization": "Cardiology",
-  "licenseNumber": "JD12345"
+  "licenseNumber": "JD12345",
+  "street": "123 Main St",
+  "city": "Anytown",
+  "zipCode": "12345",
+  "country": "USA"
 }
 
 ###
