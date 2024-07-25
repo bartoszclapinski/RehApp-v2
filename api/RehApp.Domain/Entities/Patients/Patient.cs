@@ -14,17 +14,17 @@ public class Patient
 	public Address Address { get; set; }
 
 	// Relacje z organizacjami
-	public Guid OrganizationId { get; set; }
+	public Guid? OrganizationId { get; set; }
 	public Organization Organization { get; set; }
 
 	//	Relacje z użytkownikami
-	public string PhysiotherapistId { get; set; }
+	public string? PhysiotherapistId { get; set; }
 	public ApplicationUser Physiotherapist { get; set; }
 
-	public string DoctorId { get; set; }
+	public string? DoctorId { get; set; }
 	public ApplicationUser Doctor { get; set; }
 
-	public string NurseId { get; set; }
+	public string? NurseId { get; set; }
 	public ApplicationUser Nurse { get; set; }
 	
 	// Relacje z wizytami

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RehApp.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using RehApp.Infrastructure.Data;
 namespace RehApp.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240725152344_AllowNullUsersInNewPatient")]
+    partial class AllowNullUsersInNewPatient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,7 +225,7 @@ namespace RehApp.Infrastructure.Data.Migrations
                     b.Property<string>("NurseId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid?>("OrganizationId")
+                    b.Property<Guid>("OrganizationId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PhysiotherapistId")
@@ -489,7 +492,8 @@ namespace RehApp.Infrastructure.Data.Migrations
                     b.HasOne("RehApp.Domain.Entities.Organizations.Organization", "Organization")
                         .WithMany("Patients")
                         .HasForeignKey("OrganizationId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("RehApp.Domain.Entities.Users.ApplicationUser", "Physiotherapist")
                         .WithMany("PatientsAsPhysiotherapist")

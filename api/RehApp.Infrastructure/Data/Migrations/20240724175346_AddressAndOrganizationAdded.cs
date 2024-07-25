@@ -40,7 +40,7 @@ namespace RehApp.Infrastructure.Data.Migrations
                 defaultValue: "");
 
             migrationBuilder.CreateTable(
-                name: "Organizations",
+                name: "Organization",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -77,7 +77,7 @@ namespace RehApp.Infrastructure.Data.Migrations
                     table.ForeignKey(
                         name: "FK_UserOrganizations_Organizations_OrganizationId",
                         column: x => x.OrganizationId,
-                        principalTable: "Organizations",
+                        principalTable: "Organization",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -95,7 +95,7 @@ namespace RehApp.Infrastructure.Data.Migrations
                 name: "UserOrganizations");
 
             migrationBuilder.DropTable(
-                name: "Organizations");
+                name: "Organization");
 
             migrationBuilder.DropColumn(
                 name: "Address_City",
