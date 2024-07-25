@@ -18,5 +18,10 @@ public class OrganizationConfiguration : IEntityTypeConfiguration<Organization>
 				addressBuilder.Property(a => a.ZipCode).IsRequired();
 				addressBuilder.Property(a => a.Country).IsRequired();
 			});
+		
+		builder.HasMany(o => o.Patients)
+			.WithOne(p => p.Organization)
+			.HasForeignKey(p => p.OrganizationId)
+			.OnDelete(DeleteBehavior.Restrict);
 	}
 }

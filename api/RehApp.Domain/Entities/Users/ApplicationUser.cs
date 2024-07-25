@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using RehApp.Domain.Entities.Organizations;
+using RehApp.Domain.Entities.Patients;
 
 namespace RehApp.Domain.Entities.Users;
 
@@ -24,5 +25,11 @@ public class ApplicationUser : IdentityUser
 	//	OrganizationAdmin, Admin
 	public string? AdminLevel { get; set; }
 
+	//	User - Organization relation
 	public virtual ICollection<UserOrganization> UserOrganizations { get; set; }
+	
+	//	Patient - User relation
+	public ICollection<Patient> PatientsAsPhysiotherapist { get; set; }
+	public ICollection<Patient> PatientsAsDoctor { get; set; }
+	public ICollection<Patient> PatientsAsNurse { get; set; }
 }

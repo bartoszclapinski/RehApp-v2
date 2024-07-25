@@ -1,4 +1,5 @@
 ﻿using System.Net.Sockets;
+using RehApp.Domain.Entities.Patients;
 
 namespace RehApp.Domain.Entities.Organizations;
 
@@ -11,4 +12,5 @@ public class Organization
 	public DateTime CreatedAt { get; set; }
 
 	public virtual ICollection<UserOrganization> UserOrganizations { get; set; }
+	public ICollection<Patient> Patients { get; set; }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RehApp.Domain.Entities.Organizations;
+using RehApp.Domain.Entities.Patients;
 using RehApp.Domain.Entities.Users;
 
 
@@ -14,6 +15,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 	
 	public DbSet<Organization> Organizations { get; set; }
 	public DbSet<UserOrganization> UserOrganizations { get; set; }
+	public DbSet<Patient> Patients { get; set; }
 	
 	protected override void OnModelCreating(ModelBuilder builder)
 	{

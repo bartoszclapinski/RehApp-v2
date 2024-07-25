@@ -18,5 +18,20 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
 				addressBuilder.Property(a => a.ZipCode).IsRequired();
 				addressBuilder.Property(a => a.Country).IsRequired();
 			});
+		
+		builder.HasMany(u => u.PatientsAsPhysiotherapist)
+			.WithOne(p => p.Physiotherapist)
+			.HasForeignKey(p => p.PhysiotherapistId)
+			.OnDelete(DeleteBehavior.Restrict);
+
+		builder.HasMany(u => u.PatientsAsDoctor)
+			.WithOne(p => p.Doctor)
+			.HasForeignKey(p => p.DoctorId)
+			.OnDelete(DeleteBehavior.Restrict);
+
+		builder.HasMany(u => u.PatientsAsNurse)
+			.WithOne(p => p.Nurse)
+			.HasForeignKey(p => p.NurseId)
+			.OnDelete(DeleteBehavior.Restrict);
 	}
 }
