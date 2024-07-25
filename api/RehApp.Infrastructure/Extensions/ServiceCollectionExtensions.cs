@@ -24,5 +24,6 @@ public static class ServiceCollectionExtensions
 		services.AddScoped<IDataSeed, DataSeed>();
 		services.AddScoped<IOrganizationRepository, OrganizationRepository>();
 		services.AddScoped<IPatientRepository, PatientRepository>();
+		services.AddScoped<IVisitRepository, VisitRepository>();
 	}
 }
