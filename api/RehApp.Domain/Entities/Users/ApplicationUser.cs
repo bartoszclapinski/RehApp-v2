@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using RehApp.Domain.Entities.Organizations;
 using RehApp.Domain.Entities.Patients;
+using RehApp.Domain.Entities.Visits;
 
 namespace RehApp.Domain.Entities.Users;
 
@@ -32,4 +33,7 @@ public class ApplicationUser : IdentityUser
 	public ICollection<Patient> PatientsAsPhysiotherapist { get; set; }
 	public ICollection<Patient> PatientsAsDoctor { get; set; }
 	public ICollection<Patient> PatientsAsNurse { get; set; }
+	
+	//	Visit - User relation
+	public ICollection<Visit> CreatedVisits { get; set; }
 }

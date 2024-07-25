@@ -1,5 +1,6 @@
 ﻿using RehApp.Domain.Entities.Organizations;
 using RehApp.Domain.Entities.Users;
+using RehApp.Domain.Entities.Visits;
 
 namespace RehApp.Domain.Entities.Patients;
 
@@ -12,10 +13,11 @@ public class Patient
 	public string ConditionDescription { get; set; }
 	public Address Address { get; set; }
 
-	// Relacje
+	// Relacje z organizacjami
 	public Guid OrganizationId { get; set; }
 	public Organization Organization { get; set; }
 
+	//	Relacje z użytkownikami
 	public string PhysiotherapistId { get; set; }
 	public ApplicationUser Physiotherapist { get; set; }
 
@@ -24,4 +26,7 @@ public class Patient
 
 	public string NurseId { get; set; }
 	public ApplicationUser Nurse { get; set; }
+	
+	// Relacje z wizytami
+	public ICollection<Visit> Visits { get; set; }
 }
