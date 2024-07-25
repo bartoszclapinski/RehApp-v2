@@ -1,8 +1,9 @@
 @host = https://localhost
 @port = 7000
 @RehApp.API_HostAddress = {{host}}:{{port}}
-@organizationId = 59a5cf7a-73f1-476f-a215-e728fb7a21a8
-@patientId = 3e88bc55-6b95-4388-e639-08dcacc0268a
+@organizationId = 0aa42b09-f2b2-47b5-b520-64ccee98ec66
+@patientId = 9c9b8671-82a1-4bb4-5fce-08dcacd51e63
+@doctorId = 03407503-ea31-4d18-9aff-1bc95ff173e6
 
 ### Create a new user
 POST {{RehApp.API_HostAddress}}/api/users
@@ -51,8 +52,21 @@ Content-Type: application/json
   "street": "ul. Główna 1",
   "city": "Warszawa",
   "zipCode": "00-001",
-  "country": "Polska"  
+  "country": "Polska",
+  "organizationId": "{{organizationId}}"
 }
 
 ### Get Patient by ID
 GET {{RehApp.API_HostAddress}}/api/patients/{{patientId}}
+
+### Create a new visit
+POST {{RehApp.API_HostAddress}}/api/visits
+Content-Type: application/json
+
+{
+  "date": "2024-07-30T10:00:00Z",
+  "description": "Konsultacja",
+  "createdByUserId": "{{doctorId}}",
+  "patientId": "{{patientId}}",
+  "organizationId": "{{organizationId}}"
+}

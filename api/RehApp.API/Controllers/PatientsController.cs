@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RehApp.Application.DTOs;
 using RehApp.Application.Patient.Commands.CreatePatient;
@@ -22,7 +21,7 @@ public class PatientsController(IMediator mediator) : ControllerBase
 	public async Task<IActionResult> CreatePatient(CreatePatientCommand command)
 	{
 		Guid patientId = await mediator.Send(command);
-		return CreatedAtAction(nameof(GetPatientById), new { id = patientId }, null);
+		return CreatedAtAction(nameof(GetPatientById), new { id = patientId }, command);
 	}
 	
 }
