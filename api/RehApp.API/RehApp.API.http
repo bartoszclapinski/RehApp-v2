@@ -1,8 +1,10 @@
 @host = https://localhost
 @port = 7000
 @RehApp.API_HostAddress = {{host}}:{{port}}
+@organizationId = 59a5cf7a-73f1-476f-a215-e728fb7a21a8
+@patientId = 3e88bc55-6b95-4388-e639-08dcacc0268a
 
-// Create a new user
+### Create a new user
 POST {{RehApp.API_HostAddress}}/api/users
 Content-Type: application/json
 
@@ -20,4 +22,37 @@ Content-Type: application/json
   "country": "USA"
 }
 
-###
+### Create a new organization
+POST {{RehApp.API_HostAddress}}/api/organizations
+Content-Type: application/json
+
+{
+  "name": "Centrum Fizjoterapii Zdrowie",
+  "description": "Nowoczesne centrum fizjoterapii oferujące szeroki zakres usług rehabilitacyjnych dla pacjentów w każdym wieku.",
+  "street": "ul. Kwiatowa 15",
+  "city": "Warszawa",
+  "zipCode": "00-001",
+  "country": "Polska"
+}
+
+### Get Organization by ID
+GET {{RehApp.API_HostAddress}}/api/organizations/{{organizationId}}
+Accept: application/json
+
+### Create a new patient
+POST {{RehApp.API_HostAddress}}/api/patients
+Content-Type: application/json
+
+{
+  "firstName": "Jan",
+  "lastName": "Kowalski",
+  "dateOfBirth": "1990-01-01",
+  "conditionDescription": "Ból pleców",
+  "street": "ul. Główna 1",
+  "city": "Warszawa",
+  "zipCode": "00-001",
+  "country": "Polska"  
+}
+
+### Get Patient by ID
+GET {{RehApp.API_HostAddress}}/api/patients/{{patientId}}

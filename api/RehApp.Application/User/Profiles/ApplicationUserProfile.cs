@@ -3,7 +3,7 @@ using RehApp.Application.User.Commands;
 using RehApp.Domain.Entities;
 using RehApp.Domain.Entities.Users;
 
-namespace RehApp.Application.User.DTOs;
+namespace RehApp.Application.User.Profiles;
 
 public class ApplicationUserProfile : Profile
 {

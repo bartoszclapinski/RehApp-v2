@@ -34,7 +34,7 @@ namespace RehApp.Infrastructure.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Visits_Organizations_OrganizationId",
                         column: x => x.OrganizationId,
-                        principalTable: "Organizations",
+                        principalTable: "Organization",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(

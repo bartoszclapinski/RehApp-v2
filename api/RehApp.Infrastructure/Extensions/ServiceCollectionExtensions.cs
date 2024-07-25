@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RehApp.Domain.Entities.Users;
+using RehApp.Domain.Interfaces;
 using RehApp.Infrastructure.Data;
+using RehApp.Infrastructure.Repositories;
 using RehApp.Infrastructure.Seeders;
 
 namespace RehApp.Infrastructure.Extensions;
@@ -20,6 +22,7 @@ public static class ServiceCollectionExtensions
 			.AddEntityFrameworkStores<ApplicationDbContext>();
 
 		services.AddScoped<IDataSeed, DataSeed>();
-
+		services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+		services.AddScoped<IPatientRepository, PatientRepository>();
 	}
 }

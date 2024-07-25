@@ -14,6 +14,9 @@ namespace RehApp.Infrastructure.Data.Configurations
 			builder.Property(e => e.LastName).IsRequired();
 			builder.Property(e => e.DateOfBirth).IsRequired();
 			builder.Property(e => e.ConditionDescription).IsRequired();
+			builder.Property(p => p.DoctorId).IsRequired(false);
+			builder.Property(p => p.PhysiotherapistId).IsRequired(false);
+			builder.Property(p => p.NurseId).IsRequired(false);
 
 			builder.HasOne(e => e.Organization)
 				.WithMany(o => o.Patients)
