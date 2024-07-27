@@ -1,6 +1,9 @@
 ﻿namespace RehApp.Application.User;
 
-public class CurrentUser(string Id, string Email, string Role)
+public class CurrentUser
 {
-	public bool IsInRole(string role) => Role == role;
+	public string FirstName { get; set; }
+	public string LastName { get; set; }
+	public string Email { get; set; }
+	public string Role { get; set; }
 }

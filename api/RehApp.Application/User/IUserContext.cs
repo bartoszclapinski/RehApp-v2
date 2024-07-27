@@ -1,6 +1,8 @@
-﻿namespace RehApp.Application.User;
+﻿using RehApp.Application.User.DTOs;
+
+namespace RehApp.Application.User;
 
 public interface IUserContext
 {
-	CurrentUser? GetCurrentUser();
+	Task<BaseUserDto?> GetCurrentUser();
 }

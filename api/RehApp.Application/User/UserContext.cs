@@ -1,12 +1,20 @@
 ﻿using System.Security.Claims;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using RehApp.Application.User.DTOs;
+using RehApp.Domain.Constants;
+using RehApp.Domain.Entities.Users;
 
 namespace RehApp.Application.User;
 
-
-public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
+public class UserContext(
+	IHttpContextAccessor httpContextAccessor,
+	UserManager<ApplicationUser> userManager,
+	IMapper mapper) : IUserContext
 {
-	public CurrentUser? GetCurrentUser()
+	public async Task<BaseUserDto?> GetCurrentUser()
 	{
 		ClaimsPrincipal user = httpContextAccessor.HttpContext?.User 
 		                       ?? throw new InvalidOperationException("User context is not available");
@@ -14,9 +22,26 @@ public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContex
 		if (user.Identity is not { IsAuthenticated: true }) return null;
 		
 		var userId = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)!.Value;
-		var email = user.FindFirst(c => c.Type == ClaimTypes.Email)!.Value;
-		var role = user.FindFirst(c => c.Type == ClaimTypes.Role)!.Value;
 		
-		return new CurrentUser(userId, email, role);
+		ApplicationUser? applicationUser = await userManager.Users
+			.Include(u => u.UserOrganizations)
+			.ThenInclude(uo => uo.Organization)
+			.FirstOrDefaultAsync(u => u.Id == userId);
+		
+		if (applicationUser is null) return null;
+		
+		var userRole = user.FindFirst(c => c.Type == ClaimTypes.Role)?.Value;
+		
+		BaseUserDto? result = userRole switch
+		{
+			UserRoles.Doctor => mapper.Map<DoctorDto>(applicationUser),
+			UserRoles.Physiotherapist => mapper.Map<DoctorDto>(applicationUser),
+			UserRoles.Nurse => mapper.Map<NurseDto>(applicationUser),
+			UserRoles.Admin => mapper.Map<AdminDto>(applicationUser),
+			_ => mapper.Map<BaseUserDto>(applicationUser)
+		};
+		result.Role = userRole!;
+
+		return result;
 	}
 }
