@@ -34,7 +34,7 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe({
       next: response => {
         console.log('Login successful', response);
-        this.router.navigate(['/']); // Przekierowanie po pomyślnym logowaniu
+        this.router.navigate(['/profile']); // Przekierowanie po pomyślnym logowaniu
       },
       error: err => {
         console.error('Login failed', err);

@@ -15,10 +15,18 @@ export class AuthService {
     return this.http.post<any>(this.apiUrl, { email, password }).pipe(
       tap(response => {
         if (response && response.accessToken) {
-          localStorage.setItem('token', response.accessToken);
+          this.setToken(response.accessToken);
         }
       })
     );
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
   }
 
   logout(): void {

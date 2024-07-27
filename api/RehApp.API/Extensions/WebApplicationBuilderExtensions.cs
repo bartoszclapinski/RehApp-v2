@@ -11,6 +11,17 @@ public static class WebApplicationBuilderExtensions
 		builder.Services.AddAuthentication();
 		builder.Services.AddControllers();
 		builder.Services.AddEndpointsApiExplorer();
+		
+		builder.Services.AddCors(options =>
+		{
+			options.AddPolicy("AllowAllOrigins",
+				corsPolicyBuilder =>
+				{
+					corsPolicyBuilder.AllowAnyOrigin()
+						.AllowAnyHeader()
+						.AllowAnyMethod();
+				});
+		});
 
 		builder.Services.AddSwaggerGen(o =>
 		{

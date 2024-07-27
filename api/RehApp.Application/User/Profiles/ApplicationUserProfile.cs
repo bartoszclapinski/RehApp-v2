@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using RehApp.Application.DTOs;
 using RehApp.Application.User.Commands;
+using RehApp.Application.User.DTOs;
 using RehApp.Domain.Entities;
 using RehApp.Domain.Entities.Users;
 
@@ -34,5 +36,28 @@ public class ApplicationUserProfile : Profile
 			.ForMember(dest => dest.LockoutEnd, opt => opt.Ignore())
 			.ForMember(dest => dest.LockoutEnabled, opt => opt.Ignore())
 			.ForMember(dest => dest.AccessFailedCount, opt => opt.Ignore());
+		
+		CreateMap<ApplicationUser, BaseUserDto>()
+			.ForMember(dest => dest.Address, opt => opt.MapFrom(src => new AddressDto
+			{
+				Street = src.Address.Street,
+				City = src.Address.City,
+				ZipCode = src.Address.ZipCode,
+				Country = src.Address.Country
+			}))
+			.ForMember(dest => dest.UserOrganizations, opt => opt.MapFrom(src => src.UserOrganizations.Select(uo => new UserOrganizationDto
+			{
+				OrganizationId = uo.OrganizationId,
+				OrganizationName = uo.Organization.Name
+			})));
+
+		CreateMap<ApplicationUser, DoctorDto>()
+			.IncludeBase<ApplicationUser, BaseUserDto>();
+
+		CreateMap<ApplicationUser, NurseDto>()
+			.IncludeBase<ApplicationUser, BaseUserDto>();
+
+		CreateMap<ApplicationUser, AdminDto>()
+			.IncludeBase<ApplicationUser, BaseUserDto>();
 	}
 }
