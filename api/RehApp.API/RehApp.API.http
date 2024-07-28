@@ -7,7 +7,7 @@
 @token = CfDJ8KppXvv35Z1MvC9Y7rPN44Y7LtId42KEXH7NyMilXwmJ4FQwmC7Gaak8EKXpkqtMNtJ6Y7fplpLl1MApV0dyDSGy2uVa1-pxRSXF_zB6kpcQXL0i0sZxSXZc1apIFenis18buA80fFsJdDjVG_GYQabXaqLPthRpKU3x-KkbqhXr0QGrnvmZkifY5clRrqQrsHX5QpCMO895ZQIbF0DApYRn2kK81GKNjqA_BwUyK1GxtvROjRoYSqaBb9BTAcagbj1Dco3p3PY-iM_3E1IIilLKZpVvptiuw0nyChOaUE9klC8s-Nf-ScGEY2xlqhrXRBHaofRjIOFL3fW_BiMBv6iIuhIJPtxML2lbT-DHnrlQF0_BX2U0p0QlEWalGoopzlOjppEKlHsl7ZE2juk_FMCZhd3YmOjs5Xpil2gxdxP11A3LyD1ewAzd7yj0K5rlJPLjtaHdsJ53Jmb_Hn0nvLfM2bBs1FUkJsTRHQx0qJZkmSZL_yCJqyjG6YbrcygbB98HMpKfO8qL0sAm_gD5jw-XappSdKI4Ia3RafrtVawapld1dyoqUGaSV2mkeWBXEEG20j-tqTLpRrmv4PtjsPwuCHdbU2ZA1hpATXhVNEiZXfQML0gWnBpfP7ZFjo6JRfU4iF6hFvXZHXwiVe0jEMZXq3q2aCj9ReEZ3mtPX1P7ERAykEB-fXU_B2cznvPXAvuu6-BJFnaNfhYN1zHE5euH0-bwibJigd4Tmbci2umXZTorBq4eWiSVt_U_mL38HFx16CYgVRndnB6FxDTUaQesOqegfjeq9-QbNfD2ecgVL67YD-9T0_wmjQEI3XSuSg
 
 ### Create a new user
-POST {{RehApp.API_HostAddress}}/api/users
+POST {{RehApp.API_HostAddress}}/api/identity/create
 Content-Type: application/json
 
 {
@@ -22,6 +22,23 @@ Content-Type: application/json
   "city": "New York",
   "zipCode": "12345",
   "country": "USA"
+}
+
+### Create a admin user
+POST {{RehApp.API_HostAddress}}/api/identity/create
+Content-Type: application/json
+
+{
+  "email": "admin@admin.com",
+  "password": "StrongPassword123!",
+  "firstName": "Bruce",
+  "lastName": "Wayne",
+  "userRole": "Admin", 
+  "street": "Wayne Manor",
+  "city": "Gotham",
+  "zipCode": "88-888",
+  "country": "USA",
+  "adminLevel": "System"
 }
 
 ### Login user

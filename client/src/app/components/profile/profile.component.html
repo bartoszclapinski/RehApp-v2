@@ -51,12 +51,12 @@
           <mat-list>
             <mat-list-item>
               <mat-icon matListItemIcon>local_hospital</mat-icon>
-              <span matListItemTitle>{{isDoctorUser(user) ? user.specialization : ''}}</span>
+              <span matListItemTitle></span>
               <span matListItemLine>Specialization</span>
             </mat-list-item>
             <mat-list-item>
               <mat-icon matListItemIcon>badge</mat-icon>
-              <span matListItemTitle>{{isDoctorUser(user) ? user.licenseNumber: ''}}</span>
+              <span matListItemTitle></span>
               <span matListItemLine>License Number</span>
             </mat-list-item>
           </mat-list>
@@ -67,8 +67,8 @@
   </mat-card>
 </div>
 
-<mat-card *ngIf="error">
+<mat-card >
   <mat-card-content>
-    <p class="error-message">{{error}}</p>
+    <p class="error-message"></p>
   </mat-card-content>
 </mat-card>
