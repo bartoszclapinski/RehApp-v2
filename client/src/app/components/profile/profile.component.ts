@@ -5,18 +5,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../services/user/user.service';
-import {DoctorUser, User} from '../../models/user.model';
+import { User } from '../../models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule
-  ],
+  imports: [CommonModule, MatCardModule, MatListModule, MatIconModule, MatButtonModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -24,7 +19,10 @@ export class ProfileComponent implements OnInit {
   user: User | null = null;
   error: string | null = null;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    protected userService: UserService,
+    protected router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loadUserProfile();
@@ -32,8 +30,9 @@ export class ProfileComponent implements OnInit {
 
   loadUserProfile(): void {
     this.userService.getCurrentUser().subscribe({
-      next: (user) => {
+      next: (user: User) => {
         this.user = user;
+        this.redirectBasedOnRole(user.role);
       },
       error: (err) => {
         this.error = 'Failed to load user profile';
@@ -42,7 +41,15 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  isDoctorUser(user: User): user is DoctorUser {
-    return user.role === 'Doctor';
+  private redirectBasedOnRole(role: string): void {
+    switch (role) {
+      case 'Admin':
+        this.router.navigate(['/admin-dashboard']);
+        break;
+      // Dodaj inne role w przyszłości
+      default:
+        // Pozostań na stronie profilu dla innych ról
+        break;
+    }
   }
 }
