@@ -1,13 +1,10 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RehApp.Application.User.Commands;
 using RehApp.Application.User.DTOs;
 using RehApp.Application.User.Queries.GetCurrentUser;
-using RehApp.Domain.Entities.Users;
 
 namespace RehApp.API.Controllers;
-
 
 [ApiController]
 [Route("api/identity")]
