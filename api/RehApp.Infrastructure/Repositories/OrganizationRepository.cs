@@ -23,5 +23,13 @@ namespace RehApp.Infrastructure.Repositories
 			
 			return organization;
 		}
+
+		public async Task<IEnumerable<Organization>> GetAllAsync()
+		{
+			var organizations = await context.Organizations.ToListAsync();
+			return organizations;
+		}
+
+
 	}
 }

@@ -41,7 +41,7 @@
       <mat-list>
         <mat-list-item *ngFor="let org of user.userOrganizations">
           <mat-icon matListItemIcon>business</mat-icon>
-          <span matListItemTitle>{{org.organizationName}}</span>
+          <span matListItemTitle>{{org.name}}</span>
         </mat-list-item>
       </mat-list>
 
@@ -66,9 +66,3 @@
     </mat-card-content>
   </mat-card>
 </div>
-
-<mat-card >
-  <mat-card-content>
-    <p class="error-message"></p>
-  </mat-card-content>
-</mat-card>

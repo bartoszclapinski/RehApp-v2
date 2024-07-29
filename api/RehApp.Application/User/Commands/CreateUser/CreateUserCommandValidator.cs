@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using RehApp.Domain.Constants;
 
-namespace RehApp.Application.User.Commands;
+namespace RehApp.Application.User.Commands.CreateUser;
 
 public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 {

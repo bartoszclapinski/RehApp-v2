@@ -22,11 +22,8 @@ public class UserContext(
 		if (user.Identity is not { IsAuthenticated: true }) return null;
 		
 		var userId = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)!.Value;
-		
-		ApplicationUser? applicationUser = await userManager.Users
-			.Include(u => u.UserOrganizations)
-			.ThenInclude(uo => uo.Organization)
-			.FirstOrDefaultAsync(u => u.Id == userId);
+
+		ApplicationUser? applicationUser = await userManager.FindByIdAsync(userId);
 		
 		if (applicationUser is null) return null;
 		

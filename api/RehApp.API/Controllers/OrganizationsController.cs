@@ -1,11 +1,15 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RehApp.Application.DTOs;
 using RehApp.Application.Organization.Commands.CreateOrganization;
+using RehApp.Application.Organization.Queries.GetAllOrganizations;
 using RehApp.Application.Organization.Queries.GetOrganizationById;
+using RehApp.Domain.Constants;
 
 namespace RehApp.API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/organizations")]
 public class OrganizationsController(IMediator mediator) : ControllerBase
@@ -22,5 +26,13 @@ public class OrganizationsController(IMediator mediator) : ControllerBase
 	{
 		Guid organizationId = await mediator.Send(command);
 		return CreatedAtAction(nameof(GetById), new { id = organizationId }, command);
+	}
+	
+	[Authorize(Roles = UserRoles.Admin)]
+	[HttpGet]
+	public async Task<IActionResult> GetAll()
+	{
+		var organizations = await mediator.Send(new GetAllOrganizationsQuery());
+		return Ok(organizations);
 	}
 }

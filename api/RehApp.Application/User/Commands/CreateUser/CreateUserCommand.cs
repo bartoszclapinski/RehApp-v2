@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace RehApp.Application.User.Commands;
+namespace RehApp.Application.User.Commands.CreateUser;
 
 public class CreateUserCommand : IRequest<string>
 {

@@ -6,8 +6,11 @@ export interface Address {
 }
 
 export interface UserOrganization {
-  organizationId: string;
-  organizationName: string;
+  id: string;
+  name: string;
+  description: string;
+  address: Address;
+  createdAt: Date;
 }
 
 export interface BaseUser {
