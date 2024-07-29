@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using RehApp.Domain.Entities.Users;
 
-namespace RehApp.Application.User.Commands;
+namespace RehApp.Application.User.Commands.CreateUser;
 
 public class CreateUserCommandHandle(
 	UserManager<ApplicationUser> userManager,

@@ -4,9 +4,11 @@
 @organizationId = 0aa42b09-f2b2-47b5-b520-64ccee98ec66
 @patientId = 9c9b8671-82a1-4bb4-5fce-08dcacd51e63
 @doctorId = 03407503-ea31-4d18-9aff-1bc95ff173e6
-@token = CfDJ8KppXvv35Z1MvC9Y7rPN44Y7LtId42KEXH7NyMilXwmJ4FQwmC7Gaak8EKXpkqtMNtJ6Y7fplpLl1MApV0dyDSGy2uVa1-pxRSXF_zB6kpcQXL0i0sZxSXZc1apIFenis18buA80fFsJdDjVG_GYQabXaqLPthRpKU3x-KkbqhXr0QGrnvmZkifY5clRrqQrsHX5QpCMO895ZQIbF0DApYRn2kK81GKNjqA_BwUyK1GxtvROjRoYSqaBb9BTAcagbj1Dco3p3PY-iM_3E1IIilLKZpVvptiuw0nyChOaUE9klC8s-Nf-ScGEY2xlqhrXRBHaofRjIOFL3fW_BiMBv6iIuhIJPtxML2lbT-DHnrlQF0_BX2U0p0QlEWalGoopzlOjppEKlHsl7ZE2juk_FMCZhd3YmOjs5Xpil2gxdxP11A3LyD1ewAzd7yj0K5rlJPLjtaHdsJ53Jmb_Hn0nvLfM2bBs1FUkJsTRHQx0qJZkmSZL_yCJqyjG6YbrcygbB98HMpKfO8qL0sAm_gD5jw-XappSdKI4Ia3RafrtVawapld1dyoqUGaSV2mkeWBXEEG20j-tqTLpRrmv4PtjsPwuCHdbU2ZA1hpATXhVNEiZXfQML0gWnBpfP7ZFjo6JRfU4iF6hFvXZHXwiVe0jEMZXq3q2aCj9ReEZ3mtPX1P7ERAykEB-fXU_B2cznvPXAvuu6-BJFnaNfhYN1zHE5euH0-bwibJigd4Tmbci2umXZTorBq4eWiSVt_U_mL38HFx16CYgVRndnB6FxDTUaQesOqegfjeq9-QbNfD2ecgVL67YD-9T0_wmjQEI3XSuSg
+@token = CfDJ8KppXvv35Z1MvC9Y7rPN44ZUuTC4fRsK6vTBv9uZdocJEJKlF339HchEQRzuZuHq23RVgNoQK3u-r198rZfyKrzA5-q4fwEkG3xcIgCA7kEPtsrdopoHBQWmzQvdHAuc6ZR5p070F9VgUBPcjgKUiNIHex9d2-G4XOP7IJCKHu0kGajUOw8HJ2mE9HhCMo2hdAn0xJM1bA7jq0rnjh9rRr0J8XZ6YiCc4lDUg-x8t6IICpzC1TA6jsCJ5ummsQmQ-u7MtikOS6Zsl3PHwg085GKXsGY1Pc7z9loWdJjPJpbbM49LVwgJy2z0d3ME1qzNUPBP1bLRjsX1CH2wIC8Vgoc0BNj9BtDaxoiGUnENuhEwX2l7UtKBFaB-AMESMGAWdZwaT-CR4Lb6NY6eJdkB7xihEn0Hh3CEbrIs3-Vv-AdIpNow440QzOhqMAv0S8ym-t4HOXPFYXxwOUR68oR3Ih9otrzlAblY6ylyMoQX_WDZsxqYtq5S0R70_Kbxq3O08wrWwHMmRYqu_xn_GFpQ-693YyDnqVQH3veysEmNZzKyYTY-Te6ZOnnW50kltz402kJIraT0fNTO6Efzswugiq1DmCjU_hAjiratXn-XkIs3_c8IT_QcXNWth2dCA6PRPVF_cz25jGPgyrUqFkfW7oCrV0-ZSiGRjjh9chdST0QMwzkFrgLnkWP6OMro-N0NDij-WHiO44gBjAE33iz2CFCpXS9yNSjic5g1SCnsBOzUTTOC1xfLtOK_w1VNKupQnbX3sCkjN1_H-8XZjtpNdJlogyp6DR9xKJ2yOKBwQspqcZ2ZK2sYceQBlkFYD1O7ug
+@tokenAdmin = CfDJ8KppXvv35Z1MvC9Y7rPN44Y8x2UWu5Nr8CJInKo7plR9k3RJix3_odskHlGf9FJCiroCMCOsQ8I9niGfL__FxM4n-iMnL8rRCpurIlysLBmWm29T2m_3L-il2eDQt8Wp1dx76upfv3vn6HAQaIQIIpBqBpkRzdS0eH4SaqmZyyZvGq1Lri4EztR2IxXVNJycIjS4vjFZZ2BGMUyahl3CDzd9LgoL5UcelLXoleSCfalAUOYQYLkUy5MW1T0ogFnVZxfqPkVs9vUBCFleMeHcJZNSc5Dk5i13NG_8a_93qy-VBsA6yjfJ_4z1Wvh9-yf9QaBGRn_Pi-v2rNG55hkZ8hDOroDNOzFOfic-tMS8fqWv89NCHo4FKFvz4h2dPK8n2Z1tpXdPsViUXcxQ6oSiLcdYBDdXGk_VVj98d5ukaYrNRE1j9hk9OhZkzEyjYmis2IRtkziBHp73Qs8CDnuQ26IuaZboTh6tPbGoUNAOKo6VPsBQ7j1rnTn52UtFLn2kexn2x2EDnTOJlszQ1F3gve5ksWq-XnZhiEo9rxUMRkM7X-XjdQovEX2Oc_nvvQOV0uxIBMoj3ZHGV006TlwRMusXlHq9bxPl5QKQ4E4DUIFkK9Zinh9U3Qk3wGYjz7ana739FseppeIKsRKZVIoff5Ilztrc6avNeGwx9S91E3sEP_U0URtg5HI5W_UZ2qUw0sWGKt_RrOum60yt-72zR8Oi1p0jq6aUqP5dfJlyNNKtkwnoCRU9Ov_bou58uoPfnF6Bf1tOzzzLc3jPBV10WSNJ6PL4GhU6Rfd8DjIlyJgs
+@janeId = 03407503-ea31-4d18-9aff-1bc95ff173e6
 
-### Create a new user
+### Create a new user (doctor)
 POST {{RehApp.API_HostAddress}}/api/identity/create
 Content-Type: application/json
 
@@ -22,6 +24,44 @@ Content-Type: application/json
   "city": "New York",
   "zipCode": "12345",
   "country": "USA"
+}
+
+### Create a new user (physiotherapist)
+POST {{RehApp.API_HostAddress}}/api/identity/create
+Content-Type: application/json
+Authorization: Bearer {{tokenAdmin}}
+
+{
+  "email": "john.smith@example.com",
+  "password": "StrongPassword123!",
+  "firstName": "John",
+  "lastName": "Smith",
+  "userRole": "Physiotherapist",
+  "specialization": "Physical Therapy",
+  "licenseNumber": "JS67890",
+  "street": "456 Elm St",
+  "city": "Los Angeles",
+  "zipCode": "67890",
+  "country": "USA"
+}
+
+### Create a new user (organization admin)
+POST {{RehApp.API_HostAddress}}/api/identity/create
+Content-Type: application/json
+Authorization: Bearer {{tokenAdmin}}
+
+{
+  "email": "maria.garcia@example.com",
+  "password": "StrongPassword123!",
+  "firstName": "Maria",
+  "lastName": "Garcia",
+  "userRole": "OrganizationAdmin",
+  "organizationId": "{{organizationId}}",
+  "street": "789 Pine St",
+  "city": "San Francisco",
+  "zipCode": "54321",
+  "country": "USA",
+  "adminLevel": "Organization"
 }
 
 ### Create a admin user
@@ -41,6 +81,15 @@ Content-Type: application/json
   "adminLevel": "System"
 }
 
+### Login admin
+POST {{RehApp.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+
+{
+  "email": "admin@admin.com",
+  "password": "StrongPassword123!"
+}
+
 ### Login user
 POST {{RehApp.API_HostAddress}}/api/identity/login
 Content-Type: application/json
@@ -53,6 +102,24 @@ Content-Type: application/json
 ### Get Current User
 GET {{RehApp.API_HostAddress}}/api/identity/current
 Authorization: Bearer {{token}}
+
+### Update User
+PATCH {{RehApp.API_HostAddress}}/api/identity/update
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{    
+  "id": "03407503-ea31-4d18-9aff-1bc95ff173e6",
+  "email": "jane.doe@example.com",  
+  "firstName": "Jane",
+  "lastName": "Updated",    
+  "address": {
+    "street": "123 Main St",
+    "city": "New York",
+    "zipCode": "12345",
+    "country": "USA"
+  }
+}
 
 
 ### Create a new organization
@@ -71,6 +138,10 @@ Content-Type: application/json
 ### Get Organization by ID
 GET {{RehApp.API_HostAddress}}/api/organizations/{{organizationId}}
 Accept: application/json
+
+### Get All Organizations as Admin
+GET {{RehApp.API_HostAddress}}/api/organizations
+Authorization: Bearer {{tokenAdmin}}
 
 ### Create a new patient
 POST {{RehApp.API_HostAddress}}/api/patients

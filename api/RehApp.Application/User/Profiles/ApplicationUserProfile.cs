@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using RehApp.Application.DTOs;
 using RehApp.Application.User.Commands;
+using RehApp.Application.User.Commands.CreateUser;
+using RehApp.Application.User.Commands.UpdateUser;
 using RehApp.Application.User.DTOs;
 using RehApp.Domain.Entities;
 using RehApp.Domain.Entities.Users;
@@ -59,5 +61,8 @@ public class ApplicationUserProfile : Profile
 
 		CreateMap<ApplicationUser, AdminDto>()
 			.IncludeBase<ApplicationUser, BaseUserDto>();
+
+		CreateMap<UpdateUserCommand, ApplicationUser>();
+		CreateMap<AddressDto, Address>();
 	}
 }

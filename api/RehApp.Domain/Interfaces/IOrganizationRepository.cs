@@ -6,5 +6,6 @@ namespace RehApp.Domain.Interfaces
 	{
 		Task<Organization> AddAsync(Organization organization);
 		Task<Organization?> GetByIdAsync(Guid id);
+		Task<IEnumerable<Organization>> GetAllAsync();
 	}
 }

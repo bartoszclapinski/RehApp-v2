@@ -5,8 +5,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../services/user/user.service';
-import { User } from '../../models/user.model';
+import {User, UserOrganization} from '../../models/user.model';
 import { Router } from '@angular/router';
+import {OrganizationService} from "../../services/organization/organization.service";
+import {ConsoleLogger} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-profile',
@@ -18,10 +20,13 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
   user: User | null = null;
   error: string | null = null;
+  userOrganizations: UserOrganization[] = [];
+  allOrganizations: UserOrganization[] = [];
 
   constructor(
     protected userService: UserService,
-    protected router: Router
+    protected router: Router,
+    protected organizationService: OrganizationService
   ) { }
 
   ngOnInit(): void {
@@ -41,12 +46,42 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  loadOrganizationsForUser(): void {
+    this.organizationService.getOrganizationsForUser().subscribe({
+      next: (organizations) => {
+        this.userOrganizations = organizations;
+      },
+      error: (err) => {
+        console.error('Failed to load all organizations', err);
+      }
+    });
+  }
+
+  loadAllOrganizations(): void {
+    this.organizationService.getOrganizationsForAdmin().subscribe({
+      next: (organizations) => {
+        this.allOrganizations = organizations;
+      },
+      error: (err) => {
+        console.error('Failed to load all organizations', err);
+      }
+    });
+  }
+
   private redirectBasedOnRole(role: string): void {
     switch (role) {
-      case 'Admin':
+      case "Admin":
         this.router.navigate(['/admin-dashboard']);
         break;
-      // Dodaj inne role w przyszłości
+      case "Doctor":
+        this.router.navigate(['/doctor-dashboard']);
+        break;
+      case "Physiotherapist":
+        this.router.navigate(['/physiotherapist-dashboard']);
+        break;
+      case "OrganizationAdmin":
+        this.router.navigate(['/organization-admin-dashboard']);
+        break;
       default:
         // Pozostań na stronie profilu dla innych ról
         break;

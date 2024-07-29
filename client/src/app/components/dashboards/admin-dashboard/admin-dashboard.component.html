@@ -1,44 +1,64 @@
-<div class="dashboard-container">
+<div class="dashboard-container" *ngIf="user">
   <div class="dashboard-content">
-    <mat-card>
+  <mat-card>
+    <mat-card-header>
       <mat-card-title>Admin Dashboard</mat-card-title>
-      <mat-card-content>
-        <h2>Welcome, {{user?.firstName}} {{user?.lastName}}!</h2>
-        <p>Email: {{user?.email}}</p>
-        <p>Role: {{user?.role}}</p>
-      </mat-card-content>
-    </mat-card>
+    </mat-card-header>
+    <mat-card-content>
+      <h2>Welcome, {{user.firstName}} {{user.lastName}}!</h2>
+      <p>Email: {{user.email}}</p>
+      <p>Role: {{user.role}}</p>
+    </mat-card-content>
+  </mat-card>
 
-    <mat-card>
+  <mat-card>
+    <mat-card-header>
       <mat-card-title>Quick Stats</mat-card-title>
-      <mat-card-content>
-        <div class="stats-grid">
-          <div>
-            <mat-icon>business</mat-icon>
-            <h3>{{totalOrganizations}}</h3>
-            <p>Total Organizations</p>
-          </div>
-          <div>
-            <mat-icon>people</mat-icon>
-            <h3>{{totalUsers}}</h3>
-            <p>Total Users</p>
-          </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="stats-grid">
+        <div>
+          <h3>{{totalOrganizations}}</h3>
+          <p>Total Organizations</p>
         </div>
-      </mat-card-content>
-    </mat-card>
+        <div>
+          <h3>{{totalUsers}}</h3>
+          <p>Total Users</p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
-    <mat-card>
+  <mat-card class="organizations-card">
+    <mat-card-header>
+      <mat-card-title>All Organizations</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let org of allOrganizations">
+          <mat-icon matListItemIcon>business</mat-icon>
+          <div matListItemTitle>{{org.name}}</div>
+          <div matListItemLine>{{org.description}}</div>
+          <div matListItemLine>{{org.createdAt | date: 'dd-MM-yyyy'}}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
       <mat-card-title>Quick Actions</mat-card-title>
-      <mat-card-content>
-        <button mat-raised-button color="primary" (click)="createOrganization()">
-          <mat-icon>add_business</mat-icon>
-          Create New Organization
-        </button>
-        <button mat-raised-button color="accent" (click)="addOrganizationAdmin()">
-          <mat-icon>person_add</mat-icon>
-          Add Organization Admin
-        </button>
-      </mat-card-content>
-    </mat-card>
+    </mat-card-header>
+    <mat-card-content>
+      <button mat-raised-button color="primary" (click)="createOrganization()">Create New Organization</button>
+      <button mat-raised-button color="accent" (click)="addOrganizationAdmin()">Add Organization Manager</button>
+    </mat-card-content>
+  </mat-card>
   </div>
 </div>
+
+<mat-card *ngIf="error">
+  <mat-card-content>
+    <p class="error-message">{{error}}</p>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,33 @@
+<div class="dashboard-container">
+  <div class="dashboard-content">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Physiotherapist Dashboard</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2>Welcome, {{user?.firstName}} {{user?.lastName}}!</h2>
+        <p>Email: {{user?.email}}</p>
+        <p>Role: {{user?.role}}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Quick Stats</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stats-grid">
+          <div>
+            <h3>{{totalPatients}}</h3>
+            <p>Total Patients</p>
+          </div>
+          <div>
+            <h3>{{totalVisits}}</h3>
+            <p>Total Visits</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

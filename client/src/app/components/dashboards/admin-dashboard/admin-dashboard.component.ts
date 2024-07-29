@@ -6,7 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ProfileComponent } from '../../profile/profile.component';
 import { UserService } from '../../../services/user/user.service';
-import {Router} from "@angular/router";
+import { OrganizationService } from '../../../services/organization/organization.service';
+import { Router } from "@angular/router";
+import { UserOrganization } from '../../../models/user.model';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -16,32 +18,34 @@ import {Router} from "@angular/router";
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent extends ProfileComponent {
-  totalOrganizations: number = 0;
-  totalUsers: number = 0;
 
-  constructor(protected override userService: UserService, protected override router: Router) {
-    super(userService, router);
+  constructor(
+    protected override userService: UserService,
+    protected override router: Router,
+    protected override organizationService: OrganizationService
+  ) {
+    super(userService, router, organizationService);
   }
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.loadAdminDashboardData();
+    this.loadAllOrganizations();
   }
 
-  loadAdminDashboardData(): void {
-    // Tu dodaj logikę do pobierania danych dla admina
-    // Na razie używamy mocowanych danych
-    this.totalOrganizations = 10;
-    this.totalUsers = 100;
+  get totalOrganizations(): number {
+    return this.allOrganizations.length;
+  }
+
+  get totalUsers(): number {
+    return 10;
   }
 
   createOrganization(): void {
     console.log('Creating new organization');
-    // Implementacja tworzenia organizacji
   }
 
   addOrganizationAdmin(): void {
     console.log('Adding new organization admin');
-    // Implementacja dodawania admina organizacji
+
   }
 }
