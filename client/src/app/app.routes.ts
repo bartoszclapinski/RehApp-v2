@@ -12,6 +12,8 @@ import {NurseDashboardComponent} from "./components/dashboards/nurse-dashboard/n
 import {
   OrganisationAdminDashboardComponent
 } from "./components/dashboards/organisation-admin-dashboard/organisation-admin-dashboard.component";
+import {OrganizationsComponent} from "./components/organizations/organizations.component";
+import {OrganizationDetailsComponent} from "./components/organization-details/organization-details.component";
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,6 +23,8 @@ export const routes: Routes = [
   { path: 'physiotherapist-dashboard', component: PhysiotherapistDashboardComponent, canActivate: [authGuard] },
   { path: 'nurse-dashboard', component: NurseDashboardComponent, canActivate: [authGuard] },
   { path: 'organization-admin-dashboard', component: OrganisationAdminDashboardComponent, canActivate: [authGuard] },
+  { path: 'organizations', component: OrganizationsComponent, canActivate: [authGuard] },
+  { path: 'organization/:id', component: OrganizationDetailsComponent, canActivate: [authGuard] },
   { path: 'user-profile', component: UserProfileComponent, canActivate: [authGuard] },
   { path: '', redirectTo: '/profile', pathMatch: 'full' },
   { path: '**', redirectTo: '/profile' }

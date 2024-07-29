@@ -1,0 +1,52 @@
+<div class="dashboard-container" *ngIf="organization">
+  <div class="dashboard-content">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Organization Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form>
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="organization.name" name="name" [disabled]="!isEditing">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput [(ngModel)]="organization.description" name="description" [disabled]="!isEditing"></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Street</mat-label>
+            <input matInput [(ngModel)]="organization.address.street" name="street" [disabled]="!isEditing">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input matInput [(ngModel)]="organization.address.city" name="city" [disabled]="!isEditing">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Zip Code</mat-label>
+            <input matInput [(ngModel)]="organization.address.zipCode" name="zipCode" [disabled]="!isEditing">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Country</mat-label>
+            <input matInput [(ngModel)]="organization.address.country" name="country" [disabled]="!isEditing">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Created At</mat-label>
+            <input matInput [value]="organization.createdAt | date" disabled>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="toggleEdit()" *ngIf="!isEditing">Edit</button>
+        <button mat-raised-button color="primary" (click)="saveChanges()" *ngIf="isEditing">Save</button>
+        <button mat-raised-button (click)="toggleEdit()" *ngIf="isEditing">Cancel</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -24,4 +24,8 @@ export class NavbarComponent {
   goToUserProfile(){
     this.router.navigate(['/user-profile']).then();
   }
+
+  goToOrganizations() {
+    this.router.navigate(['/organizations']).then();
+  }
 }

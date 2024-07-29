@@ -18,4 +18,8 @@ export class OrganizationService {
   getOrganizationsForUser(): Observable<UserOrganization[]> {
     return this.http.get<UserOrganization[]>(`${this.apiUrl}/organizations/for-user`);
   }
+
+  getOrganizationById(id: string): Observable<UserOrganization> {
+    return this.http.get<UserOrganization>(`${this.apiUrl}/organizations/${id}`);
+  }
 }
