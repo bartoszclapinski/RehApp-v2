@@ -1,5 +1,24 @@
 <div class="dashboard-container" *ngIf="organization">
   <div class="dashboard-content">
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Organization Administrators</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list *ngIf="administrators.length > 0">
+          <mat-list-item *ngFor="let admin of administrators">
+            <span matListItemTitle>{{admin.firstName}} {{admin.lastName}}</span>
+            <span matListItemLine>{{admin.email}}</span>
+          </mat-list-item>
+        </mat-list>
+        <p *ngIf="administrators.length === 0">No administrators added yet.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="addAdministrator()">Add Administrator</button>
+      </mat-card-actions>
+    </mat-card>
+
     <mat-card>
       <mat-card-header>
         <mat-card-title>Organization Details</mat-card-title>

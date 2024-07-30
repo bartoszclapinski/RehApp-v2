@@ -14,6 +14,9 @@ import {
 } from "./components/dashboards/organisation-admin-dashboard/organisation-admin-dashboard.component";
 import {OrganizationsComponent} from "./components/organizations/organizations.component";
 import {OrganizationDetailsComponent} from "./components/organization-details/organization-details.component";
+import {CreateOrganizationComponent} from "./components/create-organization/create-organization.component";
+import {CreateUserComponent} from "./components/create-user/create-user.component";
+import {UsersListComponent} from "./components/user-list/user-list.component";
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,8 +27,11 @@ export const routes: Routes = [
   { path: 'nurse-dashboard', component: NurseDashboardComponent, canActivate: [authGuard] },
   { path: 'organization-admin-dashboard', component: OrganisationAdminDashboardComponent, canActivate: [authGuard] },
   { path: 'organizations', component: OrganizationsComponent, canActivate: [authGuard] },
-  { path: 'organization/:id', component: OrganizationDetailsComponent, canActivate: [authGuard] },
+  { path: 'organization/details/:id', component: OrganizationDetailsComponent, canActivate: [authGuard] },
+  { path: 'organization/create', component: CreateOrganizationComponent, canActivate: [authGuard] },
+  { path: 'create-user', component: CreateUserComponent, canActivate: [authGuard] },
   { path: 'user-profile', component: UserProfileComponent, canActivate: [authGuard] },
+  { path: 'all-users', component: UsersListComponent, canActivate: [authGuard] },
   { path: '', redirectTo: '/profile', pathMatch: 'full' },
   { path: '**', redirectTo: '/profile' }
 ];

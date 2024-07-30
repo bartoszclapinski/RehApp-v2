@@ -10,6 +10,17 @@
       <p>Role: {{user.role}}</p>
     </mat-card-content>
   </mat-card>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Quick Actions</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <button mat-raised-button color="primary" (click)="createOrganization()">Create New Organization</button>
+      <button mat-raised-button color="accent" [routerLink]="['/organizations']">All Organizations</button>
+      <button mat-raised-button color="primary" [routerLink]="['/create-user']">Create New User</button>
+      <button mat-raised-button color="accent" [routerLink]="['/all-users']">All Users</button>
+    </mat-card-content>
+  </mat-card>
 
   <mat-card>
     <mat-card-header>
@@ -31,11 +42,11 @@
 
   <mat-card class="organizations-card">
     <mat-card-header>
-      <mat-card-title>All Organizations</mat-card-title>
+      <mat-card-title>Last 5 Organizations</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-list>
-        <mat-list-item *ngFor="let org of allOrganizations">
+        <mat-list-item *ngFor="let org of allOrganizations | slice:0:5">
           <mat-icon matListItemIcon>business</mat-icon>
           <div matListItemTitle>{{org.name}}</div>
           <div matListItemLine>{{org.description}}</div>
@@ -45,15 +56,6 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Quick Actions</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <button mat-raised-button color="primary" (click)="createOrganization()">Create New Organization</button>
-      <button mat-raised-button color="accent" (click)="addOrganizationAdmin()">Add Organization Manager</button>
-    </mat-card-content>
-  </mat-card>
   </div>
 </div>
 

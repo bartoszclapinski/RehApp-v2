@@ -28,6 +28,7 @@ export class DoctorDashboardComponent extends ProfileComponent{
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
   }
 
   get totalPatients(): number {

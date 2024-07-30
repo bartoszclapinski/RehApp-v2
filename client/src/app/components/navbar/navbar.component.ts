@@ -28,4 +28,8 @@ export class NavbarComponent {
   goToOrganizations() {
     this.router.navigate(['/organizations']).then();
   }
+
+  goToUsers() {
+    this.router.navigate(['/all-users']).then();
+  }
 }

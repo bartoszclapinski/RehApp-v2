@@ -13,6 +13,7 @@ public class CreateOrganizationCommandHandler(
 	public async Task<Guid> Handle(CreateOrganizationCommand request, CancellationToken cancellationToken)
 	{
 		var organization = mapper.Map<DomainOrganization>(request);
+		organization.CreatedAt = DateTime.UtcNow;
 		DomainOrganization result = await organizationRepository.AddAsync(organization);
 		return result.Id;
 	}

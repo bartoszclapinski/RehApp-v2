@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {AdminUser, BaseUser, DoctorUser, NurseUser, User} from '../../models/user.model';
 import {tap} from "rxjs/operators";
+import {CreateUserModel} from "../../models/create-user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,14 @@ export class UserService {
     );
   }
 
+  createUser(userData: CreateUserModel): Observable<any> {
+    return this.http.post(`${this.apiUrl}/identity/create`, userData);
+  }
+
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/identity/all-users`);
+  }
+
   private mapUser(user: User): User {
     switch (user.role) {
       case 'Doctor':
@@ -45,4 +54,6 @@ export class UserService {
         return user as BaseUser;
     }
   }
+
+
 }

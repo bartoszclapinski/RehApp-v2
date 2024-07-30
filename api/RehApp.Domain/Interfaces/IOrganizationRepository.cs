@@ -1,4 +1,5 @@
 ﻿using RehApp.Domain.Entities.Organizations;
+using RehApp.Domain.Entities.Users;
 
 namespace RehApp.Domain.Interfaces
 {
@@ -7,5 +8,8 @@ namespace RehApp.Domain.Interfaces
 		Task<Organization> AddAsync(Organization organization);
 		Task<Organization?> GetByIdAsync(Guid id);
 		Task<IEnumerable<Organization>> GetAllAsync();
+		Task<IEnumerable<Organization>> GetByUserIdAsync(string userId);
+		Task<IEnumerable<ApplicationUser>> GetUsersByOrganizationId(Guid organizationId);
+		Task SaveChangesAsync();
 	}
 }

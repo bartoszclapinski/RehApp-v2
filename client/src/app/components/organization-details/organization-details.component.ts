@@ -4,31 +4,37 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrganizationService } from '../../services/organization/organization.service';
-import { UserOrganization } from '../../models/user.model';
+import { UserService } from '../../services/user/user.service';
+import { UserOrganization, BaseUser } from '../../models/user.model';
 
 @Component({
   selector: 'app-organization-details',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule],
+  imports: [CommonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, MatListModule],
   templateUrl: './organization-details.component.html',
   styleUrls: ['./organization-details.component.css']
 })
 export class OrganizationDetailsComponent implements OnInit {
   organization: UserOrganization | null = null;
+  administrators: BaseUser[] = [];
   isEditing = false;
 
   constructor(
     private route: ActivatedRoute,
-    private organizationService: OrganizationService
+    private organizationService: OrganizationService,
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadOrganization(id);
+      this.loadAdministrators(id);
     }
   }
 
@@ -39,13 +45,33 @@ export class OrganizationDetailsComponent implements OnInit {
     });
   }
 
+  loadAdministrators(organizationId: string): void {
+    this.organizationService.getOrganizationAdministrators(organizationId).subscribe({
+      next: (admins) => this.administrators = admins,
+      error: (err) => console.error('Failed to load administrators', err)
+    });
+  }
+
   toggleEdit(): void {
     this.isEditing = !this.isEditing;
   }
 
   saveChanges(): void {
-    // Implementacja zapisu zmian będzie dodana później
-    console.log('Saving changes:', this.organization);
-    this.isEditing = false;
+    if (this.organization) {
+      this.organizationService.updateOrganization(this.organization).subscribe({
+        next: (updatedOrganization) => {
+          this.organization = updatedOrganization;
+          this.isEditing = false;
+          console.log('Organization updated:', updatedOrganization);
+        },
+        error: (err) => console.error('Failed to update organization', err)
+      });
+    }
+  }
+
+  addAdministrator(): void {
+    if (this.organization) {
+      this.router.navigate(['/add-admin', this.organization.id]).then();
+    }
   }
 }
