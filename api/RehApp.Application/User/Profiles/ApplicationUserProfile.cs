@@ -64,5 +64,7 @@ public class ApplicationUserProfile : Profile
 
 		CreateMap<UpdateUserCommand, ApplicationUser>();
 		CreateMap<AddressDto, Address>();
+
+		CreateMap<ApplicationUser, GetAllApplicationUserDto>();
 	}
 }

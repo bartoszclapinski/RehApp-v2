@@ -7,13 +7,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProfileComponent } from '../../profile/profile.component';
 import { UserService } from '../../../services/user/user.service';
 import { OrganizationService } from '../../../services/organization/organization.service';
-import { Router } from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import { UserOrganization } from '../../../models/user.model';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatListModule, MatIconModule, MatButtonModule],
+  imports: [CommonModule, MatCardModule, MatListModule, MatIconModule, MatButtonModule, RouterModule],
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
@@ -29,6 +29,7 @@ export class AdminDashboardComponent extends ProfileComponent {
 
   override ngOnInit(): void {
     super.ngOnInit();
+
   }
 
   get totalOrganizations(): number {
@@ -40,11 +41,10 @@ export class AdminDashboardComponent extends ProfileComponent {
   }
 
   createOrganization(): void {
-    console.log('Creating new organization');
+    this.router.navigate(['/organization/create']).then();
   }
 
-  addOrganizationAdmin(): void {
-    console.log('Adding new organization admin');
+  addUser(): void {
 
   }
 }

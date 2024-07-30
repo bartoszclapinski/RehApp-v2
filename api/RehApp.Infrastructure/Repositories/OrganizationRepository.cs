@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using RehApp.Domain.Entities.Organizations;
+using RehApp.Domain.Entities.Users;
 using RehApp.Domain.Interfaces;
 using RehApp.Infrastructure.Data;
 
@@ -28,8 +30,9 @@ namespace RehApp.Infrastructure.Repositories
 		{
 			var organizations = await context.Organizations
 				.Include(o => o.UserOrganizations)
-				//.ThenInclude(ur => ur.User)
+				.OrderByDescending(o => o.CreatedAt)
 				.ToListAsync();
+			
 			return organizations;
 		}
 
@@ -44,6 +47,18 @@ namespace RehApp.Infrastructure.Repositories
 			return result;
 		}
 
+		public async Task<IEnumerable<ApplicationUser>> GetUsersByOrganizationId(Guid organizationId)
+		{
+			var users = await context.UserOrganizations
+				.Where(uo => uo.OrganizationId == organizationId)
+				.Select(uo => uo.User)
+				.ToListAsync();
+
+			return users;
+		}
+
+		public async Task SaveChangesAsync() => await context.SaveChangesAsync();
+		
 
 
 	}

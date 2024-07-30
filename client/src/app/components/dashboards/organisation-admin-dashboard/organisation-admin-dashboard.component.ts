@@ -27,7 +27,7 @@ export class OrganisationAdminDashboardComponent extends ProfileComponent{
   }
 
   override ngOnInit(): void {
-
+    super.ngOnInit();
   }
 
   get totalPatients(): number {

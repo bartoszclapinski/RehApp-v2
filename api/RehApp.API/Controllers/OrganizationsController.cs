@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RehApp.Application.DTOs;
 using RehApp.Application.Organization.Commands.CreateOrganization;
+using RehApp.Application.Organization.Commands.UpdateOrganization;
 using RehApp.Application.Organization.Queries.GetAllOrganizations;
 using RehApp.Application.Organization.Queries.GetAllOrganizationsForUserId;
 using RehApp.Application.Organization.Queries.GetOrganizationById;
@@ -22,7 +23,8 @@ public class OrganizationsController(IMediator mediator) : ControllerBase
 		return Ok(organization);
 	}
 	
-	[HttpPost]
+	[Authorize(Roles = UserRoles.Admin)]
+	[HttpPost("create")]
 	public async Task<IActionResult> CreateOrganization(CreateOrganizationCommand command)
 	{
 		Guid organizationId = await mediator.Send(command);
@@ -44,4 +46,13 @@ public class OrganizationsController(IMediator mediator) : ControllerBase
 		var organizations = await mediator.Send(new GetAllOrganizationsForUserIdQuery(userId));
 		return Ok(organizations);
 	}
+	
+	[Authorize(Roles = UserRoles.Admin + "," + UserRoles.OrganizationAdmin)]
+	[HttpPatch("update")]
+	public async Task<IActionResult> UpdateOrganization(UpdateOrganizationCommand command)
+	{
+		await mediator.Send(command);
+		return NoContent();
+	}
+	
 }

@@ -4,7 +4,7 @@
 @organizationId = 0aa42b09-f2b2-47b5-b520-64ccee98ec66
 @patientId = 9c9b8671-82a1-4bb4-5fce-08dcacd51e63
 @doctorId = 03407503-ea31-4d18-9aff-1bc95ff173e6
-@tokenAdmin = CfDJ8KppXvv35Z1MvC9Y7rPN44Y8x2UWu5Nr8CJInKo7plR9k3RJix3_odskHlGf9FJCiroCMCOsQ8I9niGfL__FxM4n-iMnL8rRCpurIlysLBmWm29T2m_3L-il2eDQt8Wp1dx76upfv3vn6HAQaIQIIpBqBpkRzdS0eH4SaqmZyyZvGq1Lri4EztR2IxXVNJycIjS4vjFZZ2BGMUyahl3CDzd9LgoL5UcelLXoleSCfalAUOYQYLkUy5MW1T0ogFnVZxfqPkVs9vUBCFleMeHcJZNSc5Dk5i13NG_8a_93qy-VBsA6yjfJ_4z1Wvh9-yf9QaBGRn_Pi-v2rNG55hkZ8hDOroDNOzFOfic-tMS8fqWv89NCHo4FKFvz4h2dPK8n2Z1tpXdPsViUXcxQ6oSiLcdYBDdXGk_VVj98d5ukaYrNRE1j9hk9OhZkzEyjYmis2IRtkziBHp73Qs8CDnuQ26IuaZboTh6tPbGoUNAOKo6VPsBQ7j1rnTn52UtFLn2kexn2x2EDnTOJlszQ1F3gve5ksWq-XnZhiEo9rxUMRkM7X-XjdQovEX2Oc_nvvQOV0uxIBMoj3ZHGV006TlwRMusXlHq9bxPl5QKQ4E4DUIFkK9Zinh9U3Qk3wGYjz7ana739FseppeIKsRKZVIoff5Ilztrc6avNeGwx9S91E3sEP_U0URtg5HI5W_UZ2qUw0sWGKt_RrOum60yt-72zR8Oi1p0jq6aUqP5dfJlyNNKtkwnoCRU9Ov_bou58uoPfnF6Bf1tOzzzLc3jPBV10WSNJ6PL4GhU6Rfd8DjIlyJgs
+@tokenAdmin = CfDJ8KppXvv35Z1MvC9Y7rPN44bfoS7Z9lwqCFdbyUGHjRBMeP_g5j87Lwn1jXLES5f9QTegeQtqiawVYhFGqlv0q8cY54umSv_F_-9U-Ov7aALzAzcMGQfoTbCpgBf4QRXpvBPgCB9vj7WLs-MJoyOI8gDEmVSWW09Qz8XoFi7B5qwoCOykwrp3mv-0VnqrKt-yQp5xD9YbUCxyZNUJk8nvf27142aX9EvxKVtzZBHAsHx19KWbPlpDYRRugEF4jiz_SJGgNRCEiMQNxVC5wElHtDoPq1_AuX7mM-AcEziu2AIwxcjgjqtUmaH2tA8rme1jRKQ8ulV4EjkFjIMdYMi8eUtMJfSJPi9VE4tXasL-WGNjfAzGKmaffPzNDKSmOTq4Cgyip9zNJrEN-Vil4LIx_yzk6ZMk-8Xv2taTkPAcaft1WzexrDp5pT1tN2cKxVfoTW2oIqvie77ABYde4jpUi5JRh07f9RQalB62zK51mEnq9lCYgNzIl-QrEd1CW_1o-KxzePk5K3GfQz78p9Z-QX0gNhV8AeZwRscS0XP6Xm7_kzafLlKCM3sPHIHjUJ44GOF4KbrPLEcmkAutylRtIVBjQTJD5oQnB8oa442mWLm5BQKku0IjWDhKJHeXDNEhJs-azM_lf3wv6eZ2cgjcP7oOviwG8N05u0WpaDgk_zdcnL9QnigFR2A6rrDM7lWoUdE3PqffxYqX7IcjXojJ1hzJ5dv8pQAAm8fgROrECw2F1epEIkj5Na-WrCu3Ty4-4V9IEcfAggP9-txFxjvayoRL2N_P90x3wms1w74P_2ws
 @janeId = 03407503-ea31-4d18-9aff-1bc95ff173e6
 @token = CfDJ8KppXvv35Z1MvC9Y7rPN44bjMz7i9Lj_yJCdJxmtWEvfvzLH_1UvHwEZeuGEck23eP49QMmsyvZ-uKCbAz_cpG1Qsfq-quaTVkVcAxrk3_4w2OVlGGZvOtHa40CNyXh4BdddV6ntdcMpfUdHYvQ3DD8cLUsVAJEhcQTFmMUnI2ljNtBUTH0IVpHiK4hNmXHZH8bPCaRw2HYNM_yUsZGvwD_CD71k-eEwzf4WNtp5EzX-7Zqbiws6RV66J_PmY6XLgLdkiWd7RDI1Z8qFng0HtGaUruupiBSd991Tfy6W8cwGWgV8uBcX7RkZz7t2xYz-2p1VTtApMIKKpUqvl71inXof8yWqBhtbqDPKVKdVHnh70tcP7hsoB0YFyZZamyybZZsrOygdySkjkJ44-xddVNEqLVyFSH7ryvC-j8kxhQAj5kzFO6Jq3Qk4ISRONeTwO0mxLOSUDvk2-WkQKXtimtWxy0W2_01wwaMzlaHcc9n7Dms416ZM-yQLa5dkm4xwUwOsVk5YCRTJvgWDk0FFXw2d6fztEvFim1MTb0vHoALqn1aJGVredjulGy3xNIn2T5_zy1sU7T94y1Ad5Bb9KHNY5AOj2mh0TjaZGwmxgtF4pnPW79J7dkfJ9rv4jQ5VdQGI0JOF9xo3680msdBI8bx96WnMRHjaqZgIgZD-FK5iSLSVitqndizVnM5a52J0X73V6yIwJjCyKz7p2DNIbpW_XQa3G8EpO_Y0T3gMnv39kae_CCGOT1C0mYIJ_kTMtsg0vfUey7vLMuNcL2v_FiZal5QBJKXq-x0oiO-onVB1d__OCqt2VKjmzuzpnPRvgg
 
@@ -123,16 +123,36 @@ Authorization: Bearer {{token}}
 
 
 ### Create a new organization
-POST {{RehApp.API_HostAddress}}/api/organizations
+POST {{RehApp.API_HostAddress}}/api/organizations/create
 Content-Type: application/json
+Authorization: Bearer {{tokenAdmin}}
 
 {
-  "name": "Centrum Fizjoterapii Zdrowie",
-  "description": "Nowoczesne centrum fizjoterapii oferujące szeroki zakres usług rehabilitacyjnych dla pacjentów w każdym wieku.",
-  "street": "ul. Kwiatowa 15",
-  "city": "Warszawa",
-  "zipCode": "00-001",
-  "country": "Polska"
+  "name": "Nowa",
+  "description": "Opis",
+  "address": {
+    "street": "Ulica 1",
+    "city": "Miasto",
+    "zipCode": "00-001",
+    "country": "Polska"
+  }
+}
+
+### Update Organization
+PATCH {{RehApp.API_HostAddress}}/api/organizations/update
+Content-Type: application/json
+Authorization: Bearer {{tokenAdmin}}
+
+{
+  "id": "{{organizationId}}",
+  "name": "Fundacja Dla Ciebie",  
+  "description": "Fundacja pomagająca osobom z niepełnosprawnościami.",
+  "address": {
+    "street": "ul. Główna 1",
+    "city": "Gdańsk",
+    "zipCode": "11-111",
+    "country": "Polska"
+  }
 }
 
 ### Get Organization by ID
@@ -146,6 +166,10 @@ Authorization: Bearer {{tokenAdmin}}
 ### Get All Organizations for User
 GET {{RehApp.API_HostAddress}}/api/organizations/user/{{janeId}}
 Authorization: Bearer {{token}}
+
+### Get All Users with Role OrganizationAdmin for Organization by ID
+GET {{RehApp.API_HostAddress}}/api/identity/for-admins/0aa42b09-f2b2-47b5-b520-64ccee98ec66
+Authorization: Bearer {{tokenAdmin}}
 
 ### Create a new patient
 POST {{RehApp.API_HostAddress}}/api/patients
@@ -177,3 +201,7 @@ Content-Type: application/json
   "patientId": "{{patientId}}",
   "organizationId": "{{organizationId}}"
 }
+
+### Get all users
+GET {{RehApp.API_HostAddress}}/api/identity/all-users
+Authorization: Bearer {{tokenAdmin}}
