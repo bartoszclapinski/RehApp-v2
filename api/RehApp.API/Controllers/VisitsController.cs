@@ -10,7 +10,7 @@ namespace RehApp.API.Controllers;
 [Route("api/visits")]
 public class VisitsController(IMediator mediator) : ControllerBase
 {
-	[HttpGet("{id}")]
+	[HttpGet("{id:guid}")]
 	public async Task<IActionResult> GetById(Guid id)
 	{
 		VisitDto visit = await mediator.Send(new GetVisitByIdQuery(id));

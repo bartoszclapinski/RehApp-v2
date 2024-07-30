@@ -25,17 +25,21 @@ export class OrganizationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.loadOrganizations();
   }
 
   loadOrganizations(): void {
-    if (this.userService.user?.role === 'Admin') {
+    if (this.userService.user.role === 'Admin') {
       this.organizationService.getOrganizationsForAdmin().subscribe({
-        next: (orgs) => this.organizations = orgs,
+        next: (organizations) => this.organizations = organizations,
         error: (err) => console.error('Failed to load organizations', err)
       });
     } else {
-      this.organizations = this.userService.user?.userOrganizations || [];
+      this.organizationService.getOrganizationsForUser(this.userService.user.id).subscribe({
+        next: (organizations) => this.organizations = organizations,
+        error: (err) => console.error('Failed to load organizations', err)
+      });
     }
   }
 }

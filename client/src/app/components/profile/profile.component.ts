@@ -37,6 +37,11 @@ export class ProfileComponent implements OnInit {
     this.userService.getCurrentUser().subscribe({
       next: (user: User) => {
         this.user = user;
+
+        if (user.role === 'Admin') this.loadAllOrganizations();
+        else this.loadOrganizationsForUser(user.id);
+
+        console.log('User organizations:', this.userOrganizations);
         this.redirectBasedOnRole(user.role);
       },
       error: (err) => {
@@ -46,8 +51,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  loadOrganizationsForUser(): void {
-    this.organizationService.getOrganizationsForUser().subscribe({
+  loadOrganizationsForUser(userId: string): void {
+    this.organizationService.getOrganizationsForUser(userId).subscribe({
       next: (organizations) => {
         this.userOrganizations = organizations;
       },

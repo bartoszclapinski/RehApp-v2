@@ -26,9 +26,24 @@ namespace RehApp.Infrastructure.Repositories
 
 		public async Task<IEnumerable<Organization>> GetAllAsync()
 		{
-			var organizations = await context.Organizations.ToListAsync();
+			var organizations = await context.Organizations
+				.Include(o => o.UserOrganizations)
+				//.ThenInclude(ur => ur.User)
+				.ToListAsync();
 			return organizations;
 		}
+
+		public async Task<IEnumerable<Organization>> GetByUserIdAsync(string userId)
+		{
+			var result = await context.Organizations
+				.Include(o => o.UserOrganizations)
+				//.ThenInclude(uo => uo.User)
+				.Where(o => o.UserOrganizations.Any(ur => ur.UserId == userId))
+				.ToListAsync();
+
+			return result;
+		}
+
 
 
 	}

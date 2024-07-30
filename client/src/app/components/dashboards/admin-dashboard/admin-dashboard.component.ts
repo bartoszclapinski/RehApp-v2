@@ -29,7 +29,6 @@ export class AdminDashboardComponent extends ProfileComponent {
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.loadAllOrganizations();
   }
 
   get totalOrganizations(): number {
