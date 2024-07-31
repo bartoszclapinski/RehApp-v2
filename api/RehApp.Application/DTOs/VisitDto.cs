@@ -4,8 +4,8 @@ public class VisitDto
 {
 	public Guid Id { get; set; }
 	public DateTime Date { get; set; }
-	public string Description { get; set; }
-	public string CreatedByUserId { get; set; }
-	public string PatientName { get; set; }
-	public string OrganizationName { get; set; }
+	public string Description { get; set; } = default!;
+	public string CreatedByUserId { get; set; } = default!;
+	public string PatientName { get; set; } = default!;
+	public string OrganizationName { get; set; } = default!;
 }

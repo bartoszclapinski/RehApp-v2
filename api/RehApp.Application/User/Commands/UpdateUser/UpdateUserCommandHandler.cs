@@ -16,6 +16,7 @@ public class UpdateUserCommandHandler(
 		if (user is null) throw new Exception("User not found");
 
 		mapper.Map(request, user);
+		user.PhoneNumber = request.PhoneNumber;
 		IdentityResult result = await userManager.UpdateAsync(user);
 		if (!result.Succeeded) throw new Exception("User update failed");
 	}

@@ -40,7 +40,6 @@ namespace RehApp.Infrastructure.Repositories
 		{
 			var result = await context.Organizations
 				.Include(o => o.UserOrganizations)
-				//.ThenInclude(uo => uo.User)
 				.Where(o => o.UserOrganizations.Any(ur => ur.UserId == userId))
 				.ToListAsync();
 

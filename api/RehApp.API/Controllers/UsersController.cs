@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RehApp.Application.DTOs;
 using RehApp.Application.Organization.Queries.GetUsersAsOrganizationAdmins;
 using RehApp.Application.User.Commands.CreateUser;
 using RehApp.Application.User.Commands.UpdateUser;
-using RehApp.Application.User.DTOs;
 using RehApp.Application.User.Queries.GetAllUsers;
 using RehApp.Application.User.Queries.GetCurrentUser;
 

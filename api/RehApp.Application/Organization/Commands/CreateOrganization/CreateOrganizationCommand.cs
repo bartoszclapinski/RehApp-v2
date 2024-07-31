@@ -2,12 +2,16 @@
 
 namespace RehApp.Application.Organization.Commands.CreateOrganization;
 
-public class CreateOrganizationCommand : IRequest<Guid>
+public record CreateOrganizationCommand : IRequest<Guid>
 {
-	public string Name { get; set; }
-	public string Description { get; set; }
-	public string Street { get; set; }
-	public string City { get; set; }
-	public string ZipCode { get; set; }
-	public string Country { get; set; }
+	public string Name { get; set; } = default!;
+	public string Description { get; set; } = default!;
+	public string Street { get; set; } = default!;
+	public string City { get; set; } = default!;
+	public string ZipCode { get; set; } = default!;
+	public string Country { get; set; } = default!;
+	public string Phone { get; set; } = default!;
+	public string Email { get; set; } = default!;
+	public string? AdditionalInfo { get; set; }
+	public string TaxNumber { get; set; } = default!;
 }

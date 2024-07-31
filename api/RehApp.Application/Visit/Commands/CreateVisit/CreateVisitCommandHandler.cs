@@ -22,7 +22,7 @@ public class CreateVisitCommandHandler(
 		var patient = await patientRepository.GetByIdAsync(request.PatientId);
 		if (patient is null) throw new Exception("Patient not found");
 		
-		var organizationId = patient.OrganizationId ?? new Guid();
+		var organizationId = patient.OrganizationId;
 		var organization = await organizationRepository.GetByIdAsync(organizationId);
 		if (organization is null) throw new Exception("Organization not found");
 		

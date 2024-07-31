@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using RehApp.Application.User.DTOs;
+using RehApp.Application.DTOs;
 using RehApp.Domain.Entities.Users;
 using RehApp.Domain.Interfaces;
 

@@ -2,7 +2,6 @@
 using MediatR;
 using RehApp.Domain.Interfaces;
 
-
 namespace RehApp.Application.Patient.Commands.CreatePatient;
 
 public class CreatePatientCommandHandler(
