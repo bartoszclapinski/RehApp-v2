@@ -33,5 +33,14 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
 			.WithOne(p => p.Nurse)
 			.HasForeignKey(p => p.NurseId)
 			.OnDelete(DeleteBehavior.Restrict);
+		
+		builder.Property(u => u.FirstName).HasMaxLength(50).IsRequired();
+		builder.Property(u => u.LastName).HasMaxLength(50).IsRequired();
+		builder.Property(u => u.Specialization).HasMaxLength(100);
+		builder.Property(u => u.LicenseNumber).HasMaxLength(50);
+		builder.Property(u => u.Department).HasMaxLength(100);
+		builder.Property(u => u.AdminLevel).HasMaxLength(50);
+		builder.Property(u => u.PhoneNumber).HasMaxLength(15).IsRequired();
+		builder.Property(u => u.Pesel).HasMaxLength(11).IsRequired();
 	}
 }

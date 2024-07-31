@@ -20,5 +20,7 @@ public class UserOrganizationConfiguration : IEntityTypeConfiguration<UserOrgani
 			.WithMany(o => o.UserOrganizations)
 			.HasForeignKey(uo => uo.OrganizationId)
 			.OnDelete(DeleteBehavior.Restrict);
+
+		builder.Property(uo => uo.UserId).HasMaxLength(450);
 	}
 }

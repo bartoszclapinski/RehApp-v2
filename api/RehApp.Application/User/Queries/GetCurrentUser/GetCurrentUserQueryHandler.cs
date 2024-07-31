@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using RehApp.Application.User.DTOs;
+using RehApp.Application.DTOs;
 
 namespace RehApp.Application.User.Queries.GetCurrentUser;
 

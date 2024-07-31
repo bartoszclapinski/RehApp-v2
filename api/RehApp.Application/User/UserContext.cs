@@ -3,7 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using RehApp.Application.User.DTOs;
+using RehApp.Application.DTOs;
 using RehApp.Domain.Constants;
 using RehApp.Domain.Entities.Users;
 
@@ -19,16 +19,29 @@ public class UserContext(
 		ClaimsPrincipal user = httpContextAccessor.HttpContext?.User 
 		                       ?? throw new InvalidOperationException("User context is not available");
 
-		if (user.Identity is not { IsAuthenticated: true }) return null;
-		
-		var userId = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)!.Value;
+		if (user.Identity is not { IsAuthenticated: true })
+		{
+			return null;
+		}
+
+		var userId = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+		if (userId is null)
+		{
+			return null;
+		}
 
 		ApplicationUser? applicationUser = await userManager.FindByIdAsync(userId);
-		
-		if (applicationUser is null) return null;
-		
+		if (applicationUser is null)
+		{
+			return null;
+		}
+
 		var userRole = user.FindFirst(c => c.Type == ClaimTypes.Role)?.Value;
-		
+		if (userRole is null)
+		{
+			return mapper.Map<BaseUserDto>(applicationUser);
+		}
+
 		BaseUserDto? result = userRole switch
 		{
 			UserRoles.Doctor => mapper.Map<DoctorDto>(applicationUser),
@@ -37,7 +50,8 @@ public class UserContext(
 			UserRoles.Admin => mapper.Map<AdminDto>(applicationUser),
 			_ => mapper.Map<BaseUserDto>(applicationUser)
 		};
-		result.Role = userRole!;
+		
+		result.Role = userRole;
 
 		return result;
 	}

@@ -13,16 +13,15 @@ public class CreateUserCommandHandle(
 
 	public async Task<string> Handle(CreateUserCommand request, CancellationToken cancellationToken)
 	{
-		//	Check if user exists
 		ApplicationUser? userExists = await userManager.FindByEmailAsync(request.Email);
 		if (userExists != null) throw new Exception("User already exists");
 		
-		//	Check if role exists
 		IdentityRole? role = await roleManager.FindByNameAsync(request.UserRole);
 		if (role is null) throw new Exception($"Role '{request.UserRole}' does not exist.");
 		
-		//	Create user
 		var user = mapper.Map<ApplicationUser>(request);
+		user.PhoneNumber = request.PhoneNumber;
+		
 		IdentityResult result = await userManager.CreateAsync(user, request.Password);
 		if (!result.Succeeded) throw new Exception("User creation failed");
 		

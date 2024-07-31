@@ -1,5 +1,4 @@
-﻿
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace RehApp.Application.Patient.Commands.CreatePatient;
 
@@ -15,5 +14,7 @@ public class CreatePatientCommandValidator : AbstractValidator<CreatePatientComm
 		RuleFor(x => x.City).NotEmpty().MaximumLength(50);
 		RuleFor(x => x.ZipCode).NotEmpty().Matches(@"^\d{2}-\d{3}$");
 		RuleFor(x => x.Country).NotEmpty().MaximumLength(50);
+		RuleFor(x => x.Pesel).NotEmpty().Length(11);
+		RuleFor(x => x.PhoneNumber).NotEmpty().MaximumLength(15);
 	}
 }
