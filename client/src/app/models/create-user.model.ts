@@ -8,5 +8,7 @@ export interface CreateUserModel {
   city: string;
   zipCode: string;
   country: string;
+  phoneNumber: string;
+  pesel: string;
 }
 

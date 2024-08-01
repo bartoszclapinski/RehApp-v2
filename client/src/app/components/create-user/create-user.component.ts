@@ -13,15 +13,8 @@ import { CreateUserModel } from '../../models/create-user.model';
 @Component({
   selector: 'app-create-user',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule,
+    MatButtonModule],
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css']
 })
@@ -44,7 +37,9 @@ export class CreateUserComponent {
       street: ['', Validators.required],
       city: ['', Validators.required],
       zipCode: ['', [Validators.required, Validators.pattern(/^\d{2}-\d{3}$/)]],
-      country: ['', Validators.required]
+      country: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^\+?[0-9]{9,}$/)]],
+      pesel: ['', [Validators.required, Validators.pattern(/^[0-9]{11}$/)]]
     }, { validator: this.passwordMatchValidator });
   }
 
@@ -56,14 +51,24 @@ export class CreateUserComponent {
   onSubmit() {
     if (this.userForm.valid) {
       const userData: CreateUserModel = {
-        ...this.userForm.value,
-        userRole: this.userForm.get('userRole')?.value
+        email: this.userForm.get('email')?.value,
+        password: this.userForm.get('password')?.value,
+        firstName: this.userForm.get('firstName')?.value,
+        lastName: this.userForm.get('lastName')?.value,
+        street: this.userForm.get('street')?.value,
+        city: this.userForm.get('city')?.value,
+        zipCode: this.userForm.get('zipCode')?.value,
+        country: this.userForm.get('country')?.value,
+        phoneNumber: this.userForm.get('phoneNumber')?.value,
+        pesel: this.userForm.get('pesel')?.value,
+        userRole: this.userForm.get('userRole')?.getRawValue()
       };
+
 
       this.userService.createUser(userData).subscribe({
         next: () => {
           console.log('User created successfully');
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/all-users']).then();
         },
         error: (error) => {
           console.error('Error creating user', error);

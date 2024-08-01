@@ -5,12 +5,23 @@ export interface Address {
   country: string;
 }
 
-export interface UserOrganization {
+export interface Organization {
   id: string;
   name: string;
   description: string;
   address: Address;
   createdAt: Date;
+  phone: string;
+  email: string;
+  additionalInfo?: string;
+  taxNumber: string;
+}
+
+export interface UserOrganization {
+  userId: string;
+  organizationId: string;
+  organization: Organization;
+  joinedAt: Date;
 }
 
 export interface BaseUser {
@@ -19,6 +30,8 @@ export interface BaseUser {
   role: string;
   firstName: string;
   lastName: string;
+  pesel: string;
+  phoneNumber: string;
   createdAt: Date;
   lastLoginAt: Date | null;
   isActive: boolean;

@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrganizationService } from '../../services/organization/organization.service';
 import { UserService } from '../../services/user/user.service';
-import { UserOrganization, BaseUser } from '../../models/user.model';
+import {UserOrganization, BaseUser, Organization} from '../../models/user.model';
 
 @Component({
   selector: 'app-organization-details',
@@ -19,7 +19,7 @@ import { UserOrganization, BaseUser } from '../../models/user.model';
   styleUrls: ['./organization-details.component.css']
 })
 export class OrganizationDetailsComponent implements OnInit {
-  organization: UserOrganization | null = null;
+  organization: Organization | null = null;
   administrators: BaseUser[] = [];
   isEditing = false;
 
@@ -72,6 +72,13 @@ export class OrganizationDetailsComponent implements OnInit {
   addAdministrator(): void {
     if (this.organization) {
       this.router.navigate(['/add-admin', this.organization.id]).then();
+    }
+  }
+
+  addUsers(): void {
+    if (this.organization) {
+      console.log('Navigating to add users with id:', this.organization.id);
+      this.router.navigate(['/organization/add-users', this.organization.id]).then();
     }
   }
 }

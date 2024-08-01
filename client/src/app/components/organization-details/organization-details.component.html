@@ -1,12 +1,9 @@
 <div class="dashboard-container" *ngIf="organization">
   <div class="dashboard-content">
-
     <mat-card>
-      <mat-card-header>
-        <mat-card-title>Organization Administrators</mat-card-title>
-      </mat-card-header>
+      <mat-card-title>Organization Administrators</mat-card-title>
       <mat-card-content>
-        <mat-list *ngIf="administrators.length > 0">
+        <mat-list>
           <mat-list-item *ngFor="let admin of administrators">
             <span matListItemTitle>{{admin.firstName}} {{admin.lastName}}</span>
             <span matListItemLine>{{admin.email}}</span>
@@ -15,56 +12,68 @@
         <p *ngIf="administrators.length === 0">No administrators added yet.</p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="addAdministrator()">Add Administrator</button>
+        <button mat-raised-button color="primary" (click)="addUsers()">Add Users</button>
       </mat-card-actions>
     </mat-card>
 
     <mat-card>
-      <mat-card-header>
-        <mat-card-title>Organization Details</mat-card-title>
-      </mat-card-header>
+      <mat-card-title>Organization Details</mat-card-title>
       <mat-card-content>
-        <form>
-          <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput [(ngModel)]="organization.name" name="name" [disabled]="!isEditing">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <textarea matInput [(ngModel)]="organization.description" name="description" [disabled]="!isEditing"></textarea>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Street</mat-label>
-            <input matInput [(ngModel)]="organization.address.street" name="street" [disabled]="!isEditing">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>City</mat-label>
-            <input matInput [(ngModel)]="organization.address.city" name="city" [disabled]="!isEditing">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Zip Code</mat-label>
-            <input matInput [(ngModel)]="organization.address.zipCode" name="zipCode" [disabled]="!isEditing">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Country</mat-label>
-            <input matInput [(ngModel)]="organization.address.country" name="country" [disabled]="!isEditing">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Created At</mat-label>
-            <input matInput [value]="organization.createdAt | date" disabled>
-          </mat-form-field>
+        <form class="two-column-form">
+          <div class="form-column">
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput [(ngModel)]="organization.name" name="name" [disabled]="!isEditing">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Description</mat-label>
+              <textarea matInput [(ngModel)]="organization.description" name="description" [disabled]="!isEditing"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Phone</mat-label>
+              <input matInput [(ngModel)]="organization.phone" name="phone" [disabled]="!isEditing">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput [(ngModel)]="organization.email" name="email" [disabled]="!isEditing">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Tax Number</mat-label>
+              <input matInput [(ngModel)]="organization.taxNumber" name="taxNumber" [disabled]="!isEditing">
+            </mat-form-field>
+          </div>
+          <div class="form-column">
+            <mat-form-field>
+              <mat-label>Street</mat-label>
+              <input matInput [(ngModel)]="organization.address.street" name="street" [disabled]="!isEditing">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>City</mat-label>
+              <input matInput [(ngModel)]="organization.address.city" name="city" [disabled]="!isEditing">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Zip Code</mat-label>
+              <input matInput [(ngModel)]="organization.address.zipCode" name="zipCode" [disabled]="!isEditing">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Country</mat-label>
+              <input matInput [(ngModel)]="organization.address.country" name="country" [disabled]="!isEditing">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Additional Info</mat-label>
+              <textarea matInput [(ngModel)]="organization.additionalInfo" name="additionalInfo" [disabled]="!isEditing"></textarea>
+            </mat-form-field>
+          </div>
         </form>
+        <mat-form-field>
+          <mat-label>Created At</mat-label>
+          <input matInput [value]="organization.createdAt | date:'medium'" disabled>
+        </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary" (click)="toggleEdit()" *ngIf="!isEditing">Edit</button>
         <button mat-raised-button color="primary" (click)="saveChanges()" *ngIf="isEditing">Save</button>
-        <button mat-raised-button (click)="toggleEdit()" *ngIf="isEditing">Cancel</button>
+        <button mat-raised-button color="warn" (click)="toggleEdit()" *ngIf="isEditing">Cancel</button>
       </mat-card-actions>
     </mat-card>
   </div>

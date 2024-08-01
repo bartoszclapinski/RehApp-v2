@@ -5,7 +5,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../services/user/user.service';
-import {User, UserOrganization} from '../../models/user.model';
+import {Organization, User, UserOrganization} from '../../models/user.model';
 import { Router } from '@angular/router';
 import {OrganizationService} from "../../services/organization/organization.service";
 import {ConsoleLogger} from "@angular/compiler-cli";
@@ -20,8 +20,8 @@ import {ConsoleLogger} from "@angular/compiler-cli";
 export class ProfileComponent implements OnInit {
   user: User | null = null;
   error: string | null = null;
-  userOrganizations: UserOrganization[] = [];
-  allOrganizations: UserOrganization[] = [];
+  userOrganizations: Organization[] = [];
+  allOrganizations: Organization[] = [];
 
   constructor(
     protected userService: UserService,

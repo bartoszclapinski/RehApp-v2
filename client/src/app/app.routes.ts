@@ -17,6 +17,7 @@ import {OrganizationDetailsComponent} from "./components/organization-details/or
 import {CreateOrganizationComponent} from "./components/create-organization/create-organization.component";
 import {CreateUserComponent} from "./components/create-user/create-user.component";
 import {UsersListComponent} from "./components/user-list/user-list.component";
+import {AddUserToOrganizationComponent} from "./components/add-user-to-organization/add-user-to-organization.component";
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -29,8 +30,10 @@ export const routes: Routes = [
   { path: 'organizations', component: OrganizationsComponent, canActivate: [authGuard] },
   { path: 'organization/details/:id', component: OrganizationDetailsComponent, canActivate: [authGuard] },
   { path: 'organization/create', component: CreateOrganizationComponent, canActivate: [authGuard] },
+  { path: 'organization/add-users/:id', component: AddUserToOrganizationComponent,canActivate: [authGuard] },
   { path: 'create-user', component: CreateUserComponent, canActivate: [authGuard] },
   { path: 'user-profile', component: UserProfileComponent, canActivate: [authGuard] },
+  { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [authGuard] },
   { path: 'all-users', component: UsersListComponent, canActivate: [authGuard] },
   { path: '', redirectTo: '/profile', pathMatch: 'full' },
   { path: '**', redirectTo: '/profile' }

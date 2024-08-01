@@ -21,6 +21,18 @@ namespace RehApp.Infrastructure.Repositories
 		{
 			Organization? organization = await context.Organizations
 				.Include(o => o.Address) 
+				.Include(o => o.UserOrganizations)
+				.FirstOrDefaultAsync(o => o.Id == id);
+			
+			return organization;
+		}
+		
+		public async Task<Organization?> GetByIdWithUsersAsync(Guid id)
+		{
+			Organization? organization = await context.Organizations
+				.Include(o => o.Address) 
+				.Include(o => o.UserOrganizations)!
+				.ThenInclude(uo => uo.User)
 				.FirstOrDefaultAsync(o => o.Id == id);
 			
 			return organization;

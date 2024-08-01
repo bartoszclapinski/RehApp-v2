@@ -4,6 +4,7 @@ import {map, Observable} from 'rxjs';
 import {AdminUser, BaseUser, DoctorUser, NurseUser, User} from '../../models/user.model';
 import {tap} from "rxjs/operators";
 import {CreateUserModel} from "../../models/create-user.model";
+import {UpdateUser} from "../../models/update-user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,17 +28,26 @@ export class UserService {
 
   updateUserProfile(user: User): Observable<User> {
     console.log('Sending to api user profile:', user);
-    return this.http.patch<User>(`${this.apiUrl}/identity/update`, user).pipe(
-      tap(updatedUser => this._user = updatedUser)
-    );
+    return this.http.patch<User>(`${this.apiUrl}/identity/update`, user);
   }
 
-  createUser(userData: CreateUserModel): Observable<any> {
-    return this.http.post(`${this.apiUrl}/identity/create`, userData);
+  createUser(userData: CreateUserModel): Observable<CreateUserModel> {
+    console.log('Sending to api user profile:', userData);
+    return this.http.post<CreateUserModel>(`${this.apiUrl}/identity/create`, userData);
   }
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/identity/all-users`);
+  }
+
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/identity/${id}`).pipe(
+      map(user => this.mapUser(user))
+    );
+  }
+
+  getUsersForOrganization(organizationId: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/identity/users-in-organization/${organizationId}`);
   }
 
   private mapUser(user: User): User {
