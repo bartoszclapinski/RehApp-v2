@@ -17,10 +17,10 @@ public class VisitsController(IMediator mediator) : ControllerBase
 		return Ok(visit);
 	}
 
-	[HttpPost]
+	[HttpPost("add-visit")]
 	public async Task<IActionResult> AddVisit(CreateVisitCommand command)
 	{
 		Guid visitId = await mediator.Send(command);
-		return CreatedAtAction(nameof(GetById), new { id = visitId }, command);
+		return Ok();
 	}
 }

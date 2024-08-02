@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrganizationService } from '../../services/organization/organization.service';
 import { UserService } from '../../services/user/user.service';
-import {UserOrganization, BaseUser, Organization} from '../../models/user.model';
+import {  BaseUser, Organization } from '../../models/user.model';
 
 @Component({
   selector: 'app-organization-details',
@@ -22,6 +22,7 @@ export class OrganizationDetailsComponent implements OnInit {
   organization: Organization | null = null;
   administrators: BaseUser[] = [];
   isEditing = false;
+  userRole: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +37,7 @@ export class OrganizationDetailsComponent implements OnInit {
       this.loadOrganization(id);
       this.loadAdministrators(id);
     }
+    this.loadUserRole();
   }
 
   loadOrganization(id: string): void {
@@ -49,6 +51,15 @@ export class OrganizationDetailsComponent implements OnInit {
     this.organizationService.getOrganizationAdministrators(organizationId).subscribe({
       next: (admins) => this.administrators = admins,
       error: (err) => console.error('Failed to load administrators', err)
+    });
+  }
+
+  loadUserRole(): void {
+    this.userService.getCurrentUser().subscribe({
+      next: (user) => {
+        this.userRole = user.role;
+      },
+      error: (err) => console.error('Failed to load user role', err)
     });
   }
 
@@ -69,16 +80,32 @@ export class OrganizationDetailsComponent implements OnInit {
     }
   }
 
-  addAdministrator(): void {
+  addUsers(): void {
     if (this.organization) {
-      this.router.navigate(['/add-admin', this.organization.id]).then();
+      this.router.navigate(['/organization/add-users', this.organization.id]).then();
     }
   }
 
-  addUsers(): void {
+  viewEmployees(): void {
     if (this.organization) {
-      console.log('Navigating to add users with id:', this.organization.id);
-      this.router.navigate(['/organization/add-users', this.organization.id]).then();
+      this.router.navigate(['/all-users'], {
+        queryParams: {
+          organizationId: this.organization.id,
+          mode: 'employees'
+        }
+      }).then();
+    }
+  }
+
+  viewPatients(): void {
+    if (this.organization) {
+      this.router.navigate(['/organization', this.organization.id, 'patients']).then();
+    }
+  }
+
+  addPatient(): void {
+    if (this.organization) {
+      this.router.navigate(['/organization/patient/create', this.organization.id]).then();
     }
   }
 }

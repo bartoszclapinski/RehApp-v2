@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
   }
 
   canViewUsers(): boolean {
-    return this.userRole === 'Admin' || this.userRole === 'OrganizationAdmin';
+    return this.userRole === 'Admin';
   }
 
   logout() {

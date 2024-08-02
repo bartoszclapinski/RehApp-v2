@@ -2,7 +2,7 @@
   <div class="dashboard-content">
     <mat-card>
       <mat-card-title>
-        {{ isAdmin ? 'All Users' : 'Users in Your Organization' }}
+        {{ mode === 'employees' ? 'Employees' : 'Users' }}
       </mat-card-title>
       <mat-card-content>
         <table mat-table [dataSource]="users">
@@ -24,7 +24,7 @@
           <ng-container matColumnDef="details">
             <th mat-header-cell *matHeaderCellDef>Details</th>
             <td mat-cell *matCellDef="let user">
-              <button mat-raised-button color="primary" (click)="viewUserDetails(user.id)">Details</button>
+              <button mat-raised-button (click)="viewUserDetails(user.id)">Details</button>
             </td>
           </ng-container>
 

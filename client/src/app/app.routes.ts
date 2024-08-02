@@ -18,6 +18,10 @@ import {CreateOrganizationComponent} from "./components/create-organization/crea
 import {CreateUserComponent} from "./components/create-user/create-user.component";
 import {UsersListComponent} from "./components/user-list/user-list.component";
 import {AddUserToOrganizationComponent} from "./components/add-user-to-organization/add-user-to-organization.component";
+import {CreatePatientComponent} from "./components/patients/create-patient/create-patient.component";
+import {PatientListComponent} from "./components/patients/patient-list/patient-list.component";
+import {EditPatientComponent} from "./components/patients/edit-patient/edit-patient.component";
+import {AddVisitComponent} from "./components/visits/add-visit/add-visit.component";
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,6 +35,10 @@ export const routes: Routes = [
   { path: 'organization/details/:id', component: OrganizationDetailsComponent, canActivate: [authGuard] },
   { path: 'organization/create', component: CreateOrganizationComponent, canActivate: [authGuard] },
   { path: 'organization/add-users/:id', component: AddUserToOrganizationComponent,canActivate: [authGuard] },
+  { path: 'organization/patient/create/:id', component: CreatePatientComponent, canActivate: [authGuard] },
+  { path: 'organization/:id/patients', component: PatientListComponent },
+  { path: 'patient/edit/:id', component: EditPatientComponent },
+  { path: 'visit/add', component: AddVisitComponent },
   { path: 'create-user', component: CreateUserComponent, canActivate: [authGuard] },
   { path: 'user-profile', component: UserProfileComponent, canActivate: [authGuard] },
   { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [authGuard] },

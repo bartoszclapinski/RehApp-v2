@@ -47,6 +47,7 @@ export class UserService {
   }
 
   getUsersForOrganization(organizationId: string): Observable<User[]> {
+    console.log('Getting users for organization:', organizationId);
     return this.http.get<User[]>(`${this.apiUrl}/identity/users-in-organization/${organizationId}`);
   }
 

@@ -5,8 +5,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../services/user/user.service';
 import { User } from '../../models/user.model';
-import {Router} from "@angular/router";
-import {OrganizationService} from "../../services/organization/organization.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { OrganizationService } from "../../services/organization/organization.service";
 
 @Component({
   selector: 'app-users-list',
@@ -19,23 +19,33 @@ export class UsersListComponent implements OnInit {
   users: User[] = [];
   displayedColumns: string[] = ['name', 'email', 'role', 'details'];
   isAdmin: boolean = false;
+  organizationId: string | null = null;
+  mode: string | null = null;
 
-  constructor(private userService: UserService,
-              private organizationService: OrganizationService,
-              private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private organizationService: OrganizationService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.checkUserRoleAndLoadUsers();
+    this.route.queryParams.subscribe(params => {
+      this.organizationId = params['organizationId'];
+      this.mode = params['mode'];
+      this.checkUserRoleAndLoadUsers();
+    });
   }
-
 
   checkUserRoleAndLoadUsers(): void {
     this.userService.getCurrentUser().subscribe({
       next: (user) => {
         this.isAdmin = user.role === 'Admin';
-        if (this.isAdmin) {
+        if (this.mode === 'employees' && this.organizationId) {
+          this.loadUsersForOrganization(this.organizationId);
+        } else if (this.isAdmin) {
           this.loadAllUsers();
-        } else if (user.role == 'OrganizationAdmin') {
+        } else if (user.role === 'OrganizationAdmin') {
           this.loadUsersForOrganizationAdmin(user);
         } else {
           console.log('User is not authorized to view users list');
@@ -59,17 +69,21 @@ export class UsersListComponent implements OnInit {
       next: (organizations) => {
         if (organizations.length > 0) {
           const organizationId = organizations[0].id;
-          this.userService.getUsersForOrganization(organizationId).subscribe({
-            next: (users) => {
-              this.users = users;
-            },
-            error: (err) => console.error('Failed to load users for organization', err)
-          });
+          this.loadUsersForOrganization(organizationId);
         } else {
           console.error('OrganizationAdmin does not have any associated organization');
         }
       },
       error: (err) => console.error('Failed to load organizations for user', err)
+    });
+  }
+
+  loadUsersForOrganization(organizationId: string): void {
+    this.userService.getUsersForOrganization(organizationId).subscribe({
+      next: (users) => {
+        this.users = users;
+      },
+      error: (err) => console.error('Failed to load users for organization', err)
     });
   }
 
