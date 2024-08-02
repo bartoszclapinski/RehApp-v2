@@ -7,6 +7,7 @@ namespace RehApp.Domain.Interfaces
 	{
 		Task<Organization> AddAsync(Organization organization);
 		Task<Organization?> GetByIdAsync(Guid id);
+		Task<Organization?> GetByIdWithUsersAsync(Guid id);
 		Task<IEnumerable<Organization>> GetAllAsync();
 		Task<IEnumerable<Organization>> GetByUserIdAsync(string userId);
 		Task<IEnumerable<ApplicationUser>> GetUsersByOrganizationId(Guid organizationId);

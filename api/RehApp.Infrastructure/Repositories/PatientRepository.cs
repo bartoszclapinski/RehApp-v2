@@ -24,4 +24,19 @@ public class PatientRepository(ApplicationDbContext context) : IPatientRepositor
 
 		return patient;
 	}
+	
+	public async Task<List<Patient>> GetPatientsByOrganizationIdAsync(Guid organizationId)
+	{
+		return await context.Patients
+			.Where(p => p.OrganizationId == organizationId)
+			.Include(p => p.Address)
+			.OrderBy(p => p.LastName)
+			.ToListAsync();
+	}
+	
+	public async Task UpdateAsync(Patient patient)
+	{
+		context.Patients.Update(patient);
+		await context.SaveChangesAsync();
+	}
 }

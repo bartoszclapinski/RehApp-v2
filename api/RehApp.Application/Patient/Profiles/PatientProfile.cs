@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using RehApp.Application.DTOs;
 using RehApp.Application.Patient.Commands.CreatePatient;
-using RehApp.Application.Patient.Queries.GetPatientById;
+using RehApp.Application.Patient.Commands.UpdatePatient;
 using RehApp.Domain.Entities;
 using DomainPatient = RehApp.Domain.Entities.Patients.Patient;
 
@@ -23,5 +23,6 @@ public class PatientProfile : Profile
 		CreateMap<DomainPatient, PatientDto>()
 			.ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address));
 		CreateMap<Address, AddressDto>();
+		CreateMap<UpdatePatientCommand, DomainPatient>();
 	}
 }

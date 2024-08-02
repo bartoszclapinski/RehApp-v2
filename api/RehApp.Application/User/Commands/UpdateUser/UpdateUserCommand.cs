@@ -11,7 +11,7 @@ public class UpdateUserCommand : IRequest
 	public string PhoneNumber { get; set; } = default!;
 	public string Pesel { get; set; } = default!;
 	public string Role { get; set; } = default!;
-	public string Email { get; set; } = default!;
+	
 	public AddressDto Address { get; set; } = default!;
 	public string? Specialization { get; set; }
 	public string? LicenseNumber { get; set; }

@@ -48,11 +48,13 @@ public class UserContext(
 			UserRoles.Physiotherapist => mapper.Map<DoctorDto>(applicationUser),
 			UserRoles.Nurse => mapper.Map<NurseDto>(applicationUser),
 			UserRoles.Admin => mapper.Map<AdminDto>(applicationUser),
+			UserRoles.OrganizationAdmin => mapper.Map<AdminDto>(applicationUser),
 			_ => mapper.Map<BaseUserDto>(applicationUser)
 		};
-		
+        
 		result.Role = userRole;
 
 		return result;
 	}
+		
 }

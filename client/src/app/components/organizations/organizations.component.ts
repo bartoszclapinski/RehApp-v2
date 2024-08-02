@@ -5,7 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../services/user/user.service';
 import { OrganizationService } from '../../services/organization/organization.service';
-import { UserOrganization } from '../../models/user.model';
+import {Organization, UserOrganization} from '../../models/user.model';
 import {RouterModule} from "@angular/router";
 
 @Component({
@@ -16,7 +16,7 @@ import {RouterModule} from "@angular/router";
   styleUrls: ['./organizations.component.css']
 })
 export class OrganizationsComponent implements OnInit {
-  organizations: UserOrganization[] = [];
+  organizations: Organization[] = [];
   displayedColumns: string[] = ['created', 'name', 'details'];
 
   constructor(

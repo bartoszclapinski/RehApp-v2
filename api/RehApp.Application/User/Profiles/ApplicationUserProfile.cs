@@ -36,7 +36,7 @@ public class ApplicationUserProfile : Profile
             .ForMember(dest => dest.AccessFailedCount, opt => opt.Ignore());
 
         CreateMap<UpdateUserCommand, ApplicationUser>()
-            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email))
+            //.ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email))
             .ForMember(dest => dest.NormalizedEmail, opt => opt.Ignore())
             .ForMember(dest => dest.NormalizedUserName, opt => opt.Ignore())
             .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
@@ -62,5 +62,22 @@ public class ApplicationUserProfile : Profile
                 OrganizationId = uo.OrganizationId,
                 OrganizationName = uo.Organization.Name
             })));
+        
+        CreateMap<ApplicationUser, AdminDto>()
+            .IncludeBase<ApplicationUser, BaseUserDto>()
+            .ForMember(dest => dest.AdminLevel, opt => opt.MapFrom(src => src.AdminLevel));
+        
+        CreateMap<ApplicationUser, DoctorDto>()
+            .IncludeBase<ApplicationUser, BaseUserDto>()
+            .ForMember(dest => dest.Specialization, opt => opt.MapFrom(src => src.Specialization))
+            .ForMember(dest => dest.LicenseNumber, opt => opt.MapFrom(src => src.LicenseNumber));
+
+        CreateMap<ApplicationUser, NurseDto>()
+            .IncludeBase<ApplicationUser, BaseUserDto>()
+            .ForMember(dest => dest.Department, opt => opt.MapFrom(src => src.Department))
+            .ForMember(dest => dest.LicenseNumber, opt => opt.MapFrom(src => src.LicenseNumber));
+        
+        CreateMap<AddressDto, Address>();
+    
     }
 }

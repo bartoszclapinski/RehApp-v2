@@ -1,0 +1,119 @@
+<div class="edit-patient-container">
+  <mat-card class="wide-card">
+    <mat-card-header>
+      <mat-card-title>Edit Patient</mat-card-title>
+
+    </mat-card-header>
+    <button mat-flat-button class="action-button add-visit" type="button" (click)="addVisit()" *ngIf="canAddVisit">Add Visit</button>
+    <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+      <mat-card-content class="two-column-form">
+        <div class="form-column">
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName">
+            <mat-error *ngIf="patientForm.get('firstName')?.hasError('required')">First name is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+            <mat-error *ngIf="patientForm.get('lastName')?.hasError('required')">Last name is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="patientForm.get('dateOfBirth')?.hasError('required')">Date of birth is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>PESEL</mat-label>
+            <input matInput formControlName="pesel">
+            <mat-error *ngIf="patientForm.get('pesel')?.hasError('required')">PESEL is required</mat-error>
+            <mat-error *ngIf="patientForm.get('pesel')?.hasError('pattern')">PESEL must be 11 digits</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Street</mat-label>
+            <input matInput formControlName="street">
+            <mat-error *ngIf="patientForm.get('street')?.hasError('required')">Street is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city">
+            <mat-error *ngIf="patientForm.get('city')?.hasError('required')">City is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-column">
+          <mat-form-field>
+            <mat-label>Zip Code</mat-label>
+            <input matInput formControlName="zipCode">
+            <mat-error *ngIf="patientForm.get('zipCode')?.hasError('required')">Zip code is required</mat-error>
+            <mat-error *ngIf="patientForm.get('zipCode')?.hasError('pattern')">Zip code must be in format XX-XXX</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="country">
+            <mat-error *ngIf="patientForm.get('country')?.hasError('required')">Country is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phoneNumber">
+            <mat-error *ngIf="patientForm.get('phoneNumber')?.hasError('required')">Phone number is required</mat-error>
+            <mat-error *ngIf="patientForm.get('phoneNumber')?.hasError('pattern')">Please enter a valid phone number</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Doctor</mat-label>
+            <mat-select formControlName="doctorId">
+              <mat-option value="">None</mat-option>
+              <mat-option *ngFor="let doctor of doctors" [value]="doctor.id">
+                {{doctor.firstName}} {{doctor.lastName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Nurse</mat-label>
+            <mat-select formControlName="nurseId">
+              <mat-option value="">None</mat-option>
+              <mat-option *ngFor="let nurse of nurses" [value]="nurse.id">
+                {{nurse.firstName}} {{nurse.lastName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Physiotherapist</mat-label>
+            <mat-select formControlName="physiotherapistId">
+              <mat-option value="">None</mat-option>
+              <mat-option *ngFor="let physio of physiotherapists" [value]="physio.id">
+                {{physio.firstName}} {{physio.lastName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <mat-form-field class="full-width">
+        <mat-label>Condition Description</mat-label>
+        <textarea matInput formControlName="conditionDescription" rows="4"></textarea>
+        <mat-error *ngIf="patientForm.get('conditionDescription')?.hasError('required')">Condition description is required</mat-error>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-flat-button class="action-button" type="button" (click)="toggleEdit()" *ngIf="!isEditing && canEdit" >Edit</button>
+        <button mat-flat-button class="action-button" type="submit" *ngIf="isEditing" [disabled]="!patientForm.valid">Save</button>
+        <button mat-flat-button class="action-button cancel" type="button" (click)="cancelEdit()" *ngIf="isEditing">Cancel</button>
+
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
+

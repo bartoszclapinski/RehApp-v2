@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {BaseUser, UserOrganization} from '../../models/user.model';
+import {BaseUser, Organization, User, UserOrganization} from '../../models/user.model';
 import {CreateOrganization} from "../../models/organization.model";
 
 @Injectable({
@@ -12,27 +12,36 @@ export class OrganizationService {
 
   constructor(private http: HttpClient) { }
 
-  getOrganizationsForAdmin(): Observable<UserOrganization[]> {
-    return this.http.get<UserOrganization[]>(`${this.apiUrl}/organizations`);
+  getOrganizationsForAdmin(): Observable<Organization[]> {
+    return this.http.get<Organization[]>(`${this.apiUrl}/organizations`);
   }
 
-  getOrganizationsForUser(userId: string): Observable<UserOrganization[]> {
-    return this.http.get<UserOrganization[]>(`${this.apiUrl}/organizations/user/${userId}`);
+  getOrganizationsForUser(userId: string): Observable<Organization[]> {
+    return this.http.get<Organization[]>(`${this.apiUrl}/organizations/user/${userId}`);
   }
 
-  getOrganizationById(id: string): Observable<UserOrganization> {
-    return this.http.get<UserOrganization>(`${this.apiUrl}/organizations/${id}`);
+  getOrganizationById(id: string): Observable<Organization> {
+    return this.http.get<Organization>(`${this.apiUrl}/organizations/${id}`);
   }
 
   getOrganizationAdministrators(organizationId: string): Observable<BaseUser[]> {
     return this.http.get<BaseUser[]>(`${this.apiUrl}/identity/for-admins/${organizationId}`);
   }
 
-  updateOrganization(organization: UserOrganization): Observable<UserOrganization> {
-    return this.http.patch<UserOrganization>(`${this.apiUrl}/organizations/update`, organization);
+  updateOrganization(organization: Organization): Observable<Organization> {
+    return this.http.patch<Organization>(`${this.apiUrl}/organizations/update`, organization);
   }
 
   createOrganization(organization: CreateOrganization): Observable<UserOrganization> {
     return this.http.post<UserOrganization>(`${this.apiUrl}/organizations/create`, organization);
+  }
+
+  addUserToOrganization(userId: string, organizationId: string): Observable<UserOrganization> {
+    console.log('Adding user to organization', userId, organizationId);
+    return this.http.post<UserOrganization>(`${this.apiUrl}/organizations/add-user`, { userId, organizationId });
+  }
+
+  getAllUsersNotInOrganization(organizationId: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/organizations/users-not-in-organization/${organizationId}`);
   }
 }
