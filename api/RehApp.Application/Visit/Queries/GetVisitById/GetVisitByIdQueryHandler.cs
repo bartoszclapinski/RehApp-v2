@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using RehApp.Application.DTOs;
+using RehApp.Application.DTOs.VisitDTOs;
 using RehApp.Domain.Interfaces;
 
 namespace RehApp.Application.Visit.Queries.GetVisitById;

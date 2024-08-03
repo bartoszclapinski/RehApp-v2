@@ -2,9 +2,11 @@
   <mat-card class="wide-card">
     <mat-card-header>
       <mat-card-title>Edit Patient</mat-card-title>
-
     </mat-card-header>
-    <button mat-flat-button class="action-button add-visit" type="button" (click)="addVisit()" *ngIf="canAddVisit">Add Visit</button>
+    <mat-card-actions>
+      <button mat-flat-button class="action-button add-visit" type="button" (click)="addVisit()" *ngIf="canAddVisit">Add Visit</button>
+      <button mat-flat-button class="action-button add-visit" type="button" (click)="allVisits()" *ngIf="canAddVisit">All Visits</button>
+    </mat-card-actions>
     <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
       <mat-card-content class="two-column-form">
         <div class="form-column">

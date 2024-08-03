@@ -10,7 +10,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
 import { VisitService } from '../../../services/visit/visit.service';
-import { Visit } from '../../../models/visit.model';
+import { VisitToAdd } from '../../../models/visit.model';
 
 @Component({
   selector: 'app-add-visit',
@@ -57,19 +57,20 @@ export class AddVisitComponent implements OnInit {
   onSubmit() {
     if (this.visitForm.valid) {
       const formValue = this.visitForm.value;
-      const visit: Visit = {
+      const visit: VisitToAdd = {
         id: '',
-        date: formValue.date,
+        date: formValue.date.toISOString(),
         description: formValue.description,
         createdByUserId: this.userService.user.id,
         patientId: this.patientId,
         organizationId: this.organizationId
       };
 
+
       this.visitService.createVisit(visit).subscribe({
         next: () => {
           console.log('Visit created successfully');
-          this.router.navigate(['/patient', this.patientId]).then();
+          this.router.navigate(['patient/edit', this.patientId]).then();
         },
         error: (error) => {
           console.error('Error creating visit', error);

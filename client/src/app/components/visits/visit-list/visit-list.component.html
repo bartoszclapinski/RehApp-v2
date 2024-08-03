@@ -1,0 +1,36 @@
+<!-- visit-list.component.html -->
+<div class="dashboard-container">
+  <div class="dashboard-content">
+    <mat-card>
+      <mat-card-title>Visits</mat-card-title>
+      <mat-card-content>
+        <table mat-table [dataSource]="visits">
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let visit">{{visit.date | date:'dd-MM-yyyy'}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="patient">
+            <th mat-header-cell *matHeaderCellDef>Patient</th>
+            <td mat-cell *matCellDef="let visit">{{visit.patient.firstName}} {{visit.patient.lastName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="createdBy">
+            <th mat-header-cell *matHeaderCellDef>Created By</th>
+            <td mat-cell *matCellDef="let visit">{{visit.user.role}} - {{visit.user.firstName}} {{visit.user.lastName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef>Details</th>
+            <td mat-cell *matCellDef="let visit">
+              <button mat-raised-button color="primary" (click)="viewVisitDetails(visit.id)">Details</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

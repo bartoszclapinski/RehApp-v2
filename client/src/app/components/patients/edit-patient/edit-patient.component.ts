@@ -186,6 +186,12 @@ export class EditPatientComponent implements OnInit {
     }
   }
 
+  allVisits() {
+    this.router.navigate(['/organization', this.organizationId, 'visits'], {
+      queryParams: { patientId: this.patientId }
+    });
+  }
+
   cancelEdit() {
     this.toggleEdit();
     this.loadPatientData();

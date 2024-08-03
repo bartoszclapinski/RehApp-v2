@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Visit } from '../../models/visit.model';
+import {Visit, VisitToAdd, VisitUpdate} from '../../models/visit.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,32 +13,29 @@ export class VisitService {
 
   constructor(private http: HttpClient) { }
 
-  createVisit(visit: Visit): Observable<Visit> {
+  createVisit(visit: VisitToAdd): Observable<VisitToAdd> {
     console.log("Adding visit: ", visit);
-    return this.http.post<Visit>(`${this.apiUrl}/visits/add-visit`, visit);
+    return this.http.post<VisitToAdd>(`${this.apiUrl}/visits/add-visit`, visit);
   }
 
-  getVisitsByPatientId(patientId: string): Observable<Visit[]> {
-    return this.http.get<Visit[]>(`${this.apiUrl}/visits/patient/${patientId}`);
+  getVisitsByUserForOrganization(userId: string, organizationId: string): Observable<Visit[]> {
+    return this.http.get<Visit[]>(`${this.apiUrl}/visits/user/${userId}/organization/${organizationId}`);
+  }
+
+  updateVisit(visit: VisitUpdate): Observable<VisitUpdate> {
+    console.log("Updating visit: ", visit);
+    return this.http.put<VisitUpdate>(`${this.apiUrl}/visits/${visit.id}`, visit);
   }
 
   getVisitById(visitId: string): Observable<Visit> {
     return this.http.get<Visit>(`${this.apiUrl}/visits/${visitId}`);
   }
 
-  updateVisit(visit: Visit): Observable<Visit> {
-    return this.http.put<Visit>(`${this.apiUrl}/visits/${visit.id}`, visit);
+  getVisitsByPatientIdForUser(patientId: string, userId: string): Observable<Visit[]> {
+    return this.http.get<Visit[]>(`${this.apiUrl}/visits/patient/${patientId}/user/${userId}`);
   }
 
-  deleteVisit(visitId: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/visits/${visitId}`);
-  }
-
-  getVisitsByOrganizationId(organizationId: string): Observable<Visit[]> {
+  getAllVisitsForOrganization(organizationId: string): Observable<Visit[]> {
     return this.http.get<Visit[]>(`${this.apiUrl}/visits/organization/${organizationId}`);
-  }
-
-  getVisitsByUserId(userId: string): Observable<Visit[]> {
-    return this.http.get<Visit[]>(`${this.apiUrl}/visits/user/${userId}`);
   }
 }

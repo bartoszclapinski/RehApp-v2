@@ -1,9 +1,10 @@
-﻿// RehApp.Application/Visit/MappingProfiles/VisitProfile.cs
-
-using AutoMapper;
-using RehApp.Application.DTOs;
+﻿using AutoMapper;
+using RehApp.Application.DTOs.VisitDTOs;
 using RehApp.Application.Visit.Commands.CreateVisit;
+using RehApp.Application.Visit.Commands.UpdateVisit;
+using RehApp.Domain.Entities.Users;
 using DomainVisit = RehApp.Domain.Entities.Visits.Visit;
+using DomainPatient = RehApp.Domain.Entities.Patients.Patient;
 
 namespace RehApp.Application.Visit.Profiles;
 
@@ -12,9 +13,16 @@ public class VisitProfile : Profile
 	public VisitProfile()
 	{
 		CreateMap<CreateVisitCommand, DomainVisit>();
+		CreateMap<DomainVisit, VisitForListDto>()
+			.ForMember(dest => dest.Patient, opt => opt.MapFrom(src => src.Patient))
+			.ForMember(dest => dest.User, opt => opt.MapFrom(src => src.CreatedByUser));
+
+		CreateMap<ApplicationUser, BaseUserForVisitListDto>();
+		CreateMap<DomainPatient, PatientForVisitListDto>();
 		CreateMap<DomainVisit, VisitDto>()
-			.ForMember(dest => dest.CreatedByUserId, opt => opt.MapFrom(src => src.CreatedByUserId))
-			.ForMember(dest => dest.PatientName, opt => opt.MapFrom(src => $"{src.Patient.FirstName} {src.Patient.LastName}"))
-			.ForMember(dest => dest.OrganizationName, opt => opt.MapFrom(src => src.Organization.Name));
+			.ForMember(dest => dest.Patient, opt => opt.MapFrom(src => src.Patient))
+			.ForMember(dest => dest.User, opt => opt.MapFrom(src => src.CreatedByUser));
+		
+		CreateMap<UpdateVisitCommand, DomainVisit>();
 	}
 }
