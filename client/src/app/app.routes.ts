@@ -22,6 +22,8 @@ import {CreatePatientComponent} from "./components/patients/create-patient/creat
 import {PatientListComponent} from "./components/patients/patient-list/patient-list.component";
 import {EditPatientComponent} from "./components/patients/edit-patient/edit-patient.component";
 import {AddVisitComponent} from "./components/visits/add-visit/add-visit.component";
+import {VisitListComponent} from "./components/visits/visit-list/visit-list.component";
+import {EditVisitComponent} from "./components/visits/edit-visit/edit-visit.component";
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -37,8 +39,10 @@ export const routes: Routes = [
   { path: 'organization/add-users/:id', component: AddUserToOrganizationComponent,canActivate: [authGuard] },
   { path: 'organization/patient/create/:id', component: CreatePatientComponent, canActivate: [authGuard] },
   { path: 'organization/:id/patients', component: PatientListComponent },
+  { path: 'organization/:id/visits', component: VisitListComponent },
   { path: 'patient/edit/:id', component: EditPatientComponent },
   { path: 'visit/add', component: AddVisitComponent },
+  { path: 'visit/edit/:id', component: EditVisitComponent },
   { path: 'create-user', component: CreateUserComponent, canActivate: [authGuard] },
   { path: 'user-profile', component: UserProfileComponent, canActivate: [authGuard] },
   { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [authGuard] },

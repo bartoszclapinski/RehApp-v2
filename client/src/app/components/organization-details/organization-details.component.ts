@@ -108,4 +108,16 @@ export class OrganizationDetailsComponent implements OnInit {
       this.router.navigate(['/organization/patient/create', this.organization.id]).then();
     }
   }
+
+  viewVisits(): void {
+    if (this.organization) {
+      this.router.navigate(['/organization', this.organization.id, 'visits']).then();
+    }
+  }
+
+  viewAllVisits(): void {
+    if (this.organization) {
+      this.router.navigate(['/organization', this.organization.id, 'visits']).then();
+    }
+  }
 }

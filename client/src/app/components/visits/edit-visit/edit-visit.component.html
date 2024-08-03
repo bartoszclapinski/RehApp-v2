@@ -1,0 +1,39 @@
+<!-- edit-visit.component.html -->
+<div class="edit-visit-container">
+  <mat-card class="wide-card">
+    <mat-card-header>
+      <mat-card-title>Visit Details</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="visitForm" (ngSubmit)="onSubmit()">
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Visit Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="visitDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="4"></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Patient</mat-label>
+          <input matInput formControlName="patientName" readonly>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Created By</mat-label>
+          <input matInput formControlName="createdByName" readonly>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="button" (click)="toggleEdit()" *ngIf="!isEditing && canEdit">Edit Visit</button>
+        <button mat-raised-button color="primary" type="submit" *ngIf="isEditing" [disabled]="!visitForm.valid">Save Changes</button>
+        <button mat-raised-button color="warn" type="button" (click)="cancelEdit()" *ngIf="isEditing">Cancel</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

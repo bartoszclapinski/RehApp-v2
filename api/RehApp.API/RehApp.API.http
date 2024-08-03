@@ -6,6 +6,8 @@
 @adminGuid = e9f9a7c8-31bd-4103-80ca-2420f31c61a3
 @userId = 797ee785-f57d-4a56-973e-948890b1e6f3
 @organizationId = 7e23355c-4b98-4578-2d6c-08dcb1b4a917
+@johnDoeDoctorGuid = 36bc25ec-7106-45d4-936a-9e2878af6144
+@johnDoeDoctorToken = CfDJ8KppXvv35Z1MvC9Y7rPN44a2Mrx43eB35b3Fb_4PJhVio8NCGKXGqWGW8sUlHeO8MVleZ_JSzeTM8hHWrnENIrpN30-ssls0r9WEB6k5c6dgoQUDV7G-Y9W8EPVlbPH_iNtGTKJIioLLN1Mq1huNi_dA5lOCkICarCyPHsKzETU4iRhOs9p_reGX0_ve7oiY7wRJppIgvwFIPd_P23x2-BZj-oZEowc9tbjZNfWC2_8egFxuMQShh0GYdMrE_OqyDf6uhX_qUyvwD_O5d_5wMjIlYkHwyXE9k2qea2RRQUTbJEoAaRYS20A5QHJsTK6JYEZho9KrwEzmQOoxtpOnLyy5Y6MrgxnbrygNeqBGxcLvVKp6iHDDgJxpfApqi5u5tUasibEQflxAk3PxYRUIY0U2SgjINuKlSqYwpk728d93bb-g2TqkcL8BMSMW_ioq3_V71H5NIPkL8xe5HeXAtxeOjnbMcvZnSrWSPy3jz7YM4--1Wg_8cx0J5DOGZP9_WgP618nV0zG2bkczUvIvdA2LgHQILEHeL-VwBneaWqBcs9pWwH8fSSiNVk9hsl9wnrjleDpfl6jZhLmVYaIcCfAD5q3jIuymwBAIahBHf8Mg19itGS3v2hOtG0Kq8EWpyhiqyJQc4Ke0tiB_bJryYzEBeIpB9QPodIhcyMs8kO1VvN_fYJIAHP3V4MkKYDZCYJKThbrmSNdpZO-h1K0ziirQ3do6bJutelmWaVEasfZ1eFLkzXh7l9x23rgeqEb2oWCsil9_LkORz_Zsnxfh58l4zKkW0jTWH_bLIXgOo7zA4A02xnQSNx4s3rbJU-Gp-w
 
 
 ### Login as 'Admin'
@@ -299,3 +301,22 @@ Content-Type: application/json
 GET {{RehApp.API_HostAddress}}/api/patients/organization/{{organizationId}}
 Authorization: Bearer {{adminToken}}
 Content-Type: application/json
+
+### Get all visits for user by id for organization by id
+GET {{RehApp.API_HostAddress}}/api/visits/user/{{johnDoeDoctorGuid}}/organization/{{organizationId}}
+Authorization: Bearer {{johnDoeDoctorToken}}
+
+### Get visit by id
+GET {{RehApp.API_HostAddress}}/api/visits/a79f4f60-6b9b-4945-0bec-08dcb3cd599b
+Authorization: Bearer {{johnDoeDoctorToken}}
+
+### Update Visit
+PUT {{RehApp.API_HostAddress}}/api/visits/a79f4f60-6b9b-4945-0bec-08dcb3cd599b
+Authorization: Bearer {{johnDoeDoctorToken}}
+Content-Type: application/json
+
+{
+    "id": "a79f4f60-6b9b-4945-0bec-08dcb3cd599b",
+    "date": "2024-01-16T23:00:00.000Z",
+    "description": "asdsada"
+}

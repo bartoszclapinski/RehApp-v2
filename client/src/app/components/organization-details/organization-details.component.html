@@ -19,9 +19,11 @@
           <button mat-flat-button class="action-button" color="primary" (click)="viewEmployees()">Employees</button>
           <button mat-flat-button class="action-button" color="primary" (click)="viewPatients()">Patients</button>
           <button mat-flat-button class="action-button" color="primary" (click)="addPatient()">Add Patient</button>
+          <button mat-flat-button class="action-button" color="primary" (click)="viewAllVisits()">All Visits</button>
         </ng-container>
         <ng-container *ngIf="userRole !== 'Admin' && userRole !== 'OrganizationAdmin'">
           <button mat-flat-button class="action-button" color="primary" (click)="viewPatients()">Patients</button>
+          <button mat-flat-button class="action-button" color="primary" (click)="viewVisits()">Visits</button>
         </ng-container>
       </mat-card-actions>
     </mat-card>
