@@ -33,6 +33,7 @@
         <button mat-raised-button color="primary" type="button" (click)="toggleEdit()" *ngIf="!isEditing && canEdit">Edit Visit</button>
         <button mat-raised-button color="primary" type="submit" *ngIf="isEditing" [disabled]="!visitForm.valid">Save Changes</button>
         <button mat-raised-button color="warn" type="button" (click)="cancelEdit()" *ngIf="isEditing">Cancel</button>
+        <button mat-raised-button color="warn" (click)="confirmDelete()" *ngIf="canEdit">Delete Visit</button>
       </mat-card-actions>
     </form>
   </mat-card>
