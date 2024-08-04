@@ -3,7 +3,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminDashboardComponent } from './components/dashboards/admin-dashboard/admin-dashboard.component';
 import { authGuard } from './guards/auth.guard';
-import { UserProfileComponent } from "./components/auth/user-profile/user-profile.component";
+import { UserProfileComponent } from "./components/users/user-profile/user-profile.component";
 import {DoctorDashboardComponent} from "./components/dashboards/doctor-dashboard/doctor-dashboard.component";
 import {
   PhysiotherapistDashboardComponent

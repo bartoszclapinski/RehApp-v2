@@ -14,6 +14,7 @@ import { UserService } from '../../../services/user/user.service';
 import { OrganizationService } from '../../../services/organization/organization.service';
 import { User } from '../../../models/user.model';
 import {ConfirmDialogComponent} from "../../common/confirm-dialog.component";
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-add-user-to-organization',
@@ -36,7 +37,8 @@ export class AddUserToOrganizationComponent implements OnInit {
     private organizationService: OrganizationService,
     private route: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private notificationService: NotificationService
   ) {
     this.dataSource = new MatTableDataSource<User>();
   }
@@ -82,9 +84,13 @@ export class AddUserToOrganizationComponent implements OnInit {
         this.organizationService.addUserToOrganization(user.id, this.organizationId).subscribe({
           next: () => {
             console.log('User added to organization successfully');
-            this.router.navigate(['/organization/details', this.organizationId]);
+            this.router.navigate(['/organization/details', this.organizationId]).then();
+            this.notificationService.showSuccess('User added to organization successfully');
           },
-          error: (err) => console.error('Failed to add user to organization', err)
+          error: (err) => {
+            console.error('Failed to add user to organization', err)
+            this.notificationService.showError('Failed to add user to organization');
+          }
         });
       }
     });

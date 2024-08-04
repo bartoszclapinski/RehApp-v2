@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {BaseUser, Organization, User, UserOrganization} from '../../models/user.model';
-import {CreateOrganization} from "../../models/organization.model";
+import {CreateOrganization, CreateOrganizationDto} from "../../models/organization.model";
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +32,9 @@ export class OrganizationService {
     return this.http.patch<Organization>(`${this.apiUrl}/organizations/update`, organization);
   }
 
-  createOrganization(organization: CreateOrganization): Observable<UserOrganization> {
-    return this.http.post<UserOrganization>(`${this.apiUrl}/organizations/create`, organization);
+  createOrganization(organization: CreateOrganization): Observable<CreateOrganization> {
+    console.log('Creating organization', organization);
+    return this.http.post<CreateOrganization>(`${this.apiUrl}/organizations/create`, organization);
   }
 
   addUserToOrganization(userId: string, organizationId: string): Observable<UserOrganization> {

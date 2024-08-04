@@ -1,44 +1,67 @@
 <div class="dashboard-container">
   <div class="dashboard-content">
     <mat-card>
-      <mat-card-header>
-        <mat-card-title>Create New Organization</mat-card-title>
-      </mat-card-header>
+      <mat-card-title>Create New Organization</mat-card-title>
       <mat-card-content>
-        <form (ngSubmit)="createOrganization()">
-          <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput [(ngModel)]="newOrganization.name" name="name" required>
-          </mat-form-field>
+        <form (ngSubmit)="createOrganization()" #organizationForm="ngForm" class="two-column-form">
+          <div class="form-column">
+            <mat-form-field appearance="fill">
+              <mat-label>Name</mat-label>
+              <input matInput [(ngModel)]="newOrganization.name" name="name" required>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <textarea matInput [(ngModel)]="newOrganization.description" name="description" required></textarea>
-          </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Description</mat-label>
+              <textarea matInput [(ngModel)]="newOrganization.description" name="description" required></textarea>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Street</mat-label>
-            <input matInput [(ngModel)]="newOrganization.street" name="street" required>
-          </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Street</mat-label>
+              <input matInput [(ngModel)]="newOrganization.street" name="street" required>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>City</mat-label>
-            <input matInput [(ngModel)]="newOrganization.city" name="city" required>
-          </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>City</mat-label>
+              <input matInput [(ngModel)]="newOrganization.city" name="city" required>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Zip Code</mat-label>
-            <input matInput [(ngModel)]="newOrganization.zipCode" name="zipCode" required>
-          </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Zip Code</mat-label>
+              <input matInput [(ngModel)]="newOrganization.zipCode" name="zipCode" required>
+            </mat-form-field>
+          </div>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Country</mat-label>
-            <input matInput [(ngModel)]="newOrganization.country" name="country" required>
-          </mat-form-field>
+          <div class="form-column">
+            <mat-form-field appearance="fill">
+              <mat-label>Country</mat-label>
+              <input matInput [(ngModel)]="newOrganization.country" name="country" required>
+            </mat-form-field>
 
-          <button mat-flat-button class="action-button" color="primary" type="submit">Create Organization</button>
+            <mat-form-field appearance="fill">
+              <mat-label>Phone</mat-label>
+              <input matInput [(ngModel)]="newOrganization.phone" name="phone" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput [(ngModel)]="newOrganization.email" name="email" required type="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Tax Number</mat-label>
+              <input matInput [(ngModel)]="newOrganization.taxNumber" name="taxNumber" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Additional Info</mat-label>
+              <textarea matInput [(ngModel)]="newOrganization.additionalInfo" name="additionalInfo"></textarea>
+            </mat-form-field>
+          </div>
         </form>
       </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" type="submit" [disabled]="!organizationForm.form.valid" (click)="createOrganization()">Create Organization</button>
+      </mat-card-actions>
     </mat-card>
   </div>
 </div>

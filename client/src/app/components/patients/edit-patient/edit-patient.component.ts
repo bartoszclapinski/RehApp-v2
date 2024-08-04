@@ -13,6 +13,7 @@ import { UserService } from '../../../services/user/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../../models/user.model';
 import { Patient } from '../../../models/patient.model';
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-edit-patient',
@@ -48,7 +49,8 @@ export class EditPatientComponent implements OnInit {
     private patientService: PatientService,
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notificationService: NotificationService
   ) {
     this.patientForm = this.fb.group({
       firstName: [{value: '', disabled: true}, Validators.required],
@@ -160,11 +162,13 @@ export class EditPatientComponent implements OnInit {
       this.patientService.updatePatient(patientData).subscribe({
         next: () => {
           console.log('Patient updated successfully');
+          this.notificationService.showSuccess('Patient updated successfully');
           this.toggleEdit();
           this.loadPatientData();
         },
         error: (error) => {
           console.error('Error updating patient', error);
+          this.notificationService.showError('Failed to update patient');
         }
       });
     }

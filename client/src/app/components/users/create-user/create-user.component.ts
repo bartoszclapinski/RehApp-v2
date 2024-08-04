@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../../services/user/user.service';
 import { Router } from '@angular/router';
 import { CreateUserModel } from '../../../models/create-user.model';
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-create-user',
@@ -25,7 +26,8 @@ export class CreateUserComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {
     this.userForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -64,14 +66,15 @@ export class CreateUserComponent {
         userRole: this.userForm.get('userRole')?.getRawValue()
       };
 
-
       this.userService.createUser(userData).subscribe({
         next: () => {
           console.log('User created successfully');
+          this.notificationService.showSuccess('User created successfully');
           this.router.navigate(['/all-users']).then();
         },
         error: (error) => {
           console.error('Error creating user', error);
+          this.notificationService.showError('Error creating user');
         }
       });
     }

@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
   }
 
   goToOrganizations() {
-    this.router.navigate(['/organizations']).then();
+    this.router.navigate(['/organization-list']).then();
   }
 
   goToUsers() {
