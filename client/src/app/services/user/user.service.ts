@@ -51,6 +51,11 @@ export class UserService {
     return this.http.get<User[]>(`${this.apiUrl}/identity/users-in-organization/${organizationId}`);
   }
 
+  changePassword(passwordData: { id: string, currentPassword: string, newPassword: string }): Observable<any> {
+    console.log('Sending to api change password:', passwordData);
+    return this.http.post(`${this.apiUrl}/account/change-password`, passwordData);
+  }
+
   private mapUser(user: User): User {
     switch (user.role) {
       case 'Doctor':

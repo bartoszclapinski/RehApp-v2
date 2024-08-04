@@ -24,5 +24,6 @@ public class VisitProfile : Profile
 			.ForMember(dest => dest.User, opt => opt.MapFrom(src => src.CreatedByUser));
 		
 		CreateMap<UpdateVisitCommand, DomainVisit>();
+		
 	}
 }

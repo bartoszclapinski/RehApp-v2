@@ -38,4 +38,9 @@ export class VisitService {
   getAllVisitsForOrganization(organizationId: string): Observable<Visit[]> {
     return this.http.get<Visit[]>(`${this.apiUrl}/visits/organization/${organizationId}`);
   }
+
+  deleteVisit(visitId: string): Observable<void> {
+    console.log("Deleting visit: ", visitId);
+    return this.http.delete<void>(`${this.apiUrl}/visits/${visitId}`);
+  }
 }

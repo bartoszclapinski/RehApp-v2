@@ -7,7 +7,7 @@
 @userId = 797ee785-f57d-4a56-973e-948890b1e6f3
 @organizationId = 7e23355c-4b98-4578-2d6c-08dcb1b4a917
 @johnDoeDoctorGuid = 36bc25ec-7106-45d4-936a-9e2878af6144
-@johnDoeDoctorToken = CfDJ8KppXvv35Z1MvC9Y7rPN44a2Mrx43eB35b3Fb_4PJhVio8NCGKXGqWGW8sUlHeO8MVleZ_JSzeTM8hHWrnENIrpN30-ssls0r9WEB6k5c6dgoQUDV7G-Y9W8EPVlbPH_iNtGTKJIioLLN1Mq1huNi_dA5lOCkICarCyPHsKzETU4iRhOs9p_reGX0_ve7oiY7wRJppIgvwFIPd_P23x2-BZj-oZEowc9tbjZNfWC2_8egFxuMQShh0GYdMrE_OqyDf6uhX_qUyvwD_O5d_5wMjIlYkHwyXE9k2qea2RRQUTbJEoAaRYS20A5QHJsTK6JYEZho9KrwEzmQOoxtpOnLyy5Y6MrgxnbrygNeqBGxcLvVKp6iHDDgJxpfApqi5u5tUasibEQflxAk3PxYRUIY0U2SgjINuKlSqYwpk728d93bb-g2TqkcL8BMSMW_ioq3_V71H5NIPkL8xe5HeXAtxeOjnbMcvZnSrWSPy3jz7YM4--1Wg_8cx0J5DOGZP9_WgP618nV0zG2bkczUvIvdA2LgHQILEHeL-VwBneaWqBcs9pWwH8fSSiNVk9hsl9wnrjleDpfl6jZhLmVYaIcCfAD5q3jIuymwBAIahBHf8Mg19itGS3v2hOtG0Kq8EWpyhiqyJQc4Ke0tiB_bJryYzEBeIpB9QPodIhcyMs8kO1VvN_fYJIAHP3V4MkKYDZCYJKThbrmSNdpZO-h1K0ziirQ3do6bJutelmWaVEasfZ1eFLkzXh7l9x23rgeqEb2oWCsil9_LkORz_Zsnxfh58l4zKkW0jTWH_bLIXgOo7zA4A02xnQSNx4s3rbJU-Gp-w
+@johnDoeDoctorToken = CfDJ8KppXvv35Z1MvC9Y7rPN44Z1aidaxyar3UiCdeqUHzpT6Qm3graUzDPMJU82yHG7CwsO0kBMR8yEbv0RWtUkEYkI1IL4KlXlelEnnkYvvgRXXa3W_4aG8saf0qT6BO0xcZSg0HP_V89ISMh8lG8JEvsn6ceD3e4nUEAWoQvxzStN3W0YvbqzLtodsR2uec3xtZJRVwDPHU2wzsz_GIwy5FJ-E4GuWnnGx5SRvg7dWw6B5sKocKyIAUrEtRxXJRsktVSYSuLGN6uvX6Mn0efGh487eANiWn8tWUZ__1xEvwrKy6Zy_F_eB-h52wbVKCzQJe0O3Ia3n2CLuTHh9E65CkF7JN_kqrkRoi5bvjyBkbnTaI5qznmBX9HGyAdSR1-aLaIZnhNh7pL3nxHfejMJc_RkKIgXRAEQMoxojSgNIi_s2r1SzHTL36QJClqqTTgngPpewsQ5jRLL_70Vmu7FDHHufwDVahaR9zM4lBoTxf2WZcd4a5UBAycPDPpDQ0ooaZNjra3p-Rcuhhi3n-mCf-4BVlKh6ezhqwniJjPZYPWMNo-G8yhVOkhfBqwfkZHDp5RYZ9WRIfqh0mhTxPXSc-iWkh3rvVlyUU-_VRPK0IdzD81wxIGjuImOC1jARAPqSqgkMK0Jh9ISIHtEj2-Epu-CYcBzBI0_sQSTzk6vpkFgum1rQ3gYSQn-UaIG8d2e7VZmpUnH9JJgdWlDF7BqsLp5dYXtgrVI5auJ3Aqyy7ZkENzTlvG1pWgtlkUv4JvpuuUfRHl87pF0h4RH834LP3j-cnYIst5WD4Ghu-NnXTbrdCgzCL9KQK1J0_KdbB8Jfg
 
 
 ### Login as 'Admin'
@@ -319,4 +319,15 @@ Content-Type: application/json
     "id": "a79f4f60-6b9b-4945-0bec-08dcb3cd599b",
     "date": "2024-01-16T23:00:00.000Z",
     "description": "asdsada"
+}
+
+### Change password
+POST {{RehApp.API_HostAddress}}/api/account/change-password
+Authorization: Bearer {{johnDoeDoctorToken}}
+Content-Type: application/json
+
+{
+    "id": "36bc25ec-7106-45d4-936a-9e2878af6144",
+    "currentPassword": "SecurePassword123!",
+    "newPassword": "Secure!Password1"
 }

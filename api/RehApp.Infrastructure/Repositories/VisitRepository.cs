@@ -19,6 +19,14 @@ public class VisitRepository(ApplicationDbContext context) : IVisitRepository
 
 		return visit;
 	}
+	
+	public async Task<Visit?> GetByIdOnlyVisitAsync(Guid id)
+	{
+		Visit? visit = await context.Visits
+			.FirstOrDefaultAsync(v => v.Id == id);
+
+		return visit;
+	}
 
 	public async Task<Visit> AddAsync(Visit visit)
 	{
@@ -56,6 +64,12 @@ public class VisitRepository(ApplicationDbContext context) : IVisitRepository
 			.Include(v => v.CreatedByUser)
 			.Where(v => v.OrganizationId == organizationId)
 			.ToListAsync();
+	}
+	
+	public async Task DeleteAsync(Visit visit)
+	{
+		context.Visits.Remove(visit);
+		await context.SaveChangesAsync();
 	}
 	
 	public async Task UpdateAsync(Visit visit)

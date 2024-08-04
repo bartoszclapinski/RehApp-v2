@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
         this.userOrganizations = organizations;
       },
       error: (err) => {
-        console.error('Failed to load all organizations', err);
+        console.error('Failed to load all organization-list', err);
       }
     });
   }
@@ -65,7 +65,7 @@ export class ProfileComponent implements OnInit {
         this.allOrganizations = organizations;
       },
       error: (err) => {
-        console.error('Failed to load all organizations', err);
+        console.error('Failed to load all organization-list', err);
       }
     });
   }

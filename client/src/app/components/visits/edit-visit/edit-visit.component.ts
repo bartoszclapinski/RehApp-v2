@@ -11,8 +11,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VisitService } from '../../../services/visit/visit.service';
 import { UserService } from '../../../services/user/user.service';
-import {Visit, VisitUpdate} from '../../../models/visit.model';
+import {Visit, VisitToAdd, VisitUpdate} from '../../../models/visit.model';
 import { User } from '../../../models/user.model';
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {ConfirmDialogComponent} from "../../common/confirm-dialog.component";
 
 @Component({
   selector: 'app-edit-visit',
@@ -25,7 +27,8 @@ import { User } from '../../../models/user.model';
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule
   ],
   templateUrl: './edit-visit.component.html',
   styleUrls: ['./edit-visit.component.css']
@@ -34,6 +37,7 @@ export class EditVisitComponent implements OnInit {
   visitForm: FormGroup;
   visitId: string = '';
   visit: Visit | null = null;
+  visitToDelete: VisitToAdd | null = null;
   currentUser: User | null = null;
   isEditing = false;
   canEdit = false;
@@ -43,7 +47,8 @@ export class EditVisitComponent implements OnInit {
     private visitService: VisitService,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.visitForm = this.fb.group({
       visitDate: [{value: '', disabled: true}, Validators.required],
@@ -130,5 +135,33 @@ export class EditVisitComponent implements OnInit {
   cancelEdit() {
     this.toggleEdit();
     this.loadVisitData();
+  }
+
+  confirmDelete() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: { title: 'Confirm Delete', message: 'Are you sure you want to delete this visit?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteVisit();
+      }
+    });
+  }
+
+  deleteVisit() {
+    if (this.visit) {
+      this.visitService.deleteVisit(this.visit.id).subscribe({
+        next: () => {
+          console.log('Visit deleted successfully');
+          // Navigate back to the visit list or appropriate page
+          this.router.navigate(['/organization', this.visit?.patient.organizationId, 'visits']);
+        },
+        error: (error) => {
+          console.error('Error deleting visit', error);
+        }
+      });
+    }
   }
 }

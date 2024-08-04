@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using RehApp.Application.DTOs;
 using RehApp.Application.DTOs.VisitDTOs;
 using RehApp.Application.Visit.Commands.CreateVisit;
+using RehApp.Application.Visit.Commands.DeleteVisit;
 using RehApp.Application.Visit.Commands.UpdateVisit;
 using RehApp.Application.Visit.Queries.GetAllVisitsForOrganization;
 using RehApp.Application.Visit.Queries.GetVisitById;
@@ -62,4 +63,14 @@ public class VisitsController(IMediator mediator) : ControllerBase
 		var visits = await mediator.Send(query);
 		return Ok(visits);
 	}
+	
+	[HttpDelete("{id:guid}")]
+	public async Task<IActionResult> DeleteVisit(Guid id)
+	{
+		var command = new DeleteVisitCommand { Id = id };
+		await mediator.Send(command);
+		return NoContent();
+	}
+	
+	
 }
