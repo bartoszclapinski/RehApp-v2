@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-change-password',
@@ -24,7 +25,8 @@ export class ChangePasswordComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService
   ) {
     this.passwordForm = this.fb.group({
       currentPassword: ['', Validators.required],
@@ -53,9 +55,13 @@ export class ChangePasswordComponent implements OnInit {
       this.userService.changePassword(passwordData).subscribe({
         next: () => {
           console.log('Password changed successfully');
+          this.notificationService.showSuccess('Password changed successfully');
           this.router.navigate(['/user-profile', this.userId]);
         },
-        error: (err) => console.error('Failed to change password', err)
+        error: (err) => {
+          this.notificationService.showError('Failed to change password');
+          console.error('Failed to change password', err)
+        }
       });
     }
   }

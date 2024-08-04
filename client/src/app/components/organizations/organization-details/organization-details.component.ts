@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OrganizationService } from '../../../services/organization/organization.service';
 import { UserService } from '../../../services/user/user.service';
 import {  BaseUser, Organization } from '../../../models/user.model';
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-organization-details',
@@ -28,7 +29,8 @@ export class OrganizationDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private organizationService: OrganizationService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -74,6 +76,7 @@ export class OrganizationDetailsComponent implements OnInit {
           this.organization = updatedOrganization;
           this.isEditing = false;
           console.log('Organization updated:', updatedOrganization);
+          this.notificationService.showSuccess('Organization updated successfully');
         },
         error: (err) => console.error('Failed to update organization', err)
       });

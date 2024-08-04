@@ -12,6 +12,7 @@ import { PatientService } from '../../../services/patient/patient.service';
 import { UserService } from '../../../services/user/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../../models/user.model';
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-create-patient',
@@ -42,7 +43,8 @@ export class CreatePatientComponent implements OnInit {
     private patientService: PatientService,
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notificationService: NotificationService
   ) {
     this.patientForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -94,10 +96,12 @@ export class CreatePatientComponent implements OnInit {
       this.patientService.createPatient(patientData).subscribe({
         next: () => {
           console.log('Patient created successfully');
+          this.notificationService.showSuccess('Patient created successfully');
           this.router.navigate(['/organization/details', this.organizationId]).then();
         },
         error: (error) => {
           console.error('Error creating patient', error);
+          this.notificationService.showError('Failed to create patient');
         }
       });
     }

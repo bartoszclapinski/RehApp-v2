@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../../services/user/user.service';
 import {AdminUser, DoctorUser, NurseUser, User} from '../../../models/user.model';
 import {ActivatedRoute, Router} from "@angular/router";
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-user-profile',
@@ -23,7 +24,7 @@ export class UserProfileComponent implements OnInit {
   userType: 'base' | 'doctor' | 'nurse' | 'admin' = 'base';
 
   constructor(private fb: FormBuilder, private userService: UserService,
-              private route: ActivatedRoute, private router: Router) {
+              private route: ActivatedRoute, private router: Router, private notificationService: NotificationService) {
     this.userForm = this.fb.group({
       id: ['', Validators.required],
       email: ['', Validators.required],
@@ -91,7 +92,10 @@ export class UserProfileComponent implements OnInit {
           this.userType = 'admin';
         }
       },
-      error: (err) => console.error('Failed to load user profile', err)
+      error: (err) => {
+        this.notificationService.showError('Failed to load user profile');
+        console.error('Failed to load user profile', err)
+      }
     });
   }
 
@@ -156,9 +160,13 @@ export class UserProfileComponent implements OnInit {
       this.userService.updateUserProfile(updatedUser).subscribe({
         next: () => {
           console.log('Profile updated successfully');
+          this.notificationService.showSuccess('Profile updated successfully');
           this.toggleEdit();
         },
-        error: (err) => console.error('Failed to update profile', err)
+        error: (err) => {
+          this.notificationService.showError('Failed to update profile');
+          console.error('Failed to update profile', err)
+        }
       });
     }
   }

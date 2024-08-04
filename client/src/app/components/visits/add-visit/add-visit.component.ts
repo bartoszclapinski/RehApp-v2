@@ -11,6 +11,7 @@ import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
 import { VisitService } from '../../../services/visit/visit.service';
 import { VisitToAdd } from '../../../models/visit.model';
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-add-visit',
@@ -39,7 +40,8 @@ export class AddVisitComponent implements OnInit {
     private route: ActivatedRoute,
     protected router: Router,
     private userService: UserService,
-    private visitService: VisitService
+    private visitService: VisitService,
+    private notificationService: NotificationService
   ) {
     this.visitForm = this.fb.group({
       date: ['', Validators.required],
@@ -70,10 +72,12 @@ export class AddVisitComponent implements OnInit {
       this.visitService.createVisit(visit).subscribe({
         next: () => {
           console.log('Visit created successfully');
+          this.notificationService.showSuccess('Visit created successfully');
           this.router.navigate(['patient/edit', this.patientId]).then();
         },
         error: (error) => {
           console.error('Error creating visit', error);
+          this.notificationService.showError('Failed to create visit');
         }
       });
     }

@@ -7,7 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { OrganizationService } from '../../../services/organization/organization.service';
-import {CreateOrganization} from "../../../models/organization.model";
+import { CreateOrganization } from "../../../models/organization.model";
+import { NotificationService } from '../../../services/notification/notification.service';
 
 @Component({
   selector: 'app-create-organization',
@@ -23,22 +24,30 @@ export class CreateOrganizationComponent {
     street: '',
     city: '',
     zipCode: '',
-    country: ''
+    country: '',
+    phone: '',
+    email: '',
+    additionalInfo: '',
+    taxNumber: ''
   };
-
 
   constructor(
     private organizationService: OrganizationService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
 
   createOrganization(): void {
     this.organizationService.createOrganization(this.newOrganization).subscribe({
       next: (createdOrg) => {
         console.log('Organization created:', createdOrg);
-        this.router.navigate(['/profile']);
+        this.notificationService.showSuccess('Organization created successfully');
+        this.router.navigate(['/organization-list']);
       },
-      error: (err) => console.error('Failed to create organization', err)
+      error: (err) => {
+        console.error('Failed to create organization', err);
+        this.notificationService.showError('Failed to create organization');
+      }
     });
   }
 }

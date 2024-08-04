@@ -48,7 +48,8 @@ export class EditVisitComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private notificationService: NotificationService
   ) {
     this.visitForm = this.fb.group({
       visitDate: [{value: '', disabled: true}, Validators.required],
@@ -77,7 +78,6 @@ export class EditVisitComponent implements OnInit {
     this.visitService.getVisitById(this.visitId).subscribe({
       next: (visit: Visit) => {
         this.visit = visit;
-        console.log('Visit data loaded: ', visit);
         this.visitForm.patchValue({
           visitDate: visit.date,
           description: visit.description,
@@ -117,16 +117,16 @@ export class EditVisitComponent implements OnInit {
         description: this.visitForm.get('description')?.value
       };
 
-      console.log('Updating visit: ', updatedVisit);
-
       this.visitService.updateVisit(updatedVisit).subscribe({
         next: () => {
           console.log('Visit updated successfully');
+          this.notificationService.showSuccess('Visit updated successfully');
           this.toggleEdit();
           this.loadVisitData();
         },
         error: (error) => {
           console.error('Error updating visit', error);
+          this.notificationService.showError('Failed to update visit');
         }
       });
     }
